@@ -100,6 +100,12 @@ def _():
     return (freight_charges,)
 
 
+@app.cell
+def _(freight_charges):
+    print(f"We have ${len(freight_charges)} freight charges in inventory.\nThe total amount of freight charges is ${sum(freight_charges)}. \nAnd the highest individal freight charge is ${max(freight_charges)}")
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
@@ -118,6 +124,24 @@ def _(mo):
     *The number in brackets is an **index**, and Python counts from zero, so
     `freight_charges[0]` is the first one.*
     """)
+    return
+
+
+@app.cell
+def _(freight_charges):
+    freight_charges[0]
+    return
+
+
+@app.cell
+def _(freight_charges):
+    len(freight_charges)
+    return
+
+
+@app.cell
+def _(freight_charges):
+    sum(freight_charges)
     return
 
 
@@ -145,6 +169,12 @@ def _(mo):
     typing inside one cell. Use the **undo** button at the bottom right, which stays
     there until you close the notebook, or `Ctrl+K` and search for undo.*
     """)
+    return
+
+
+@app.cell
+def _():
+    #
     return
 
 
