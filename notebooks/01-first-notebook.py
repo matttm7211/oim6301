@@ -506,6 +506,17 @@ def _(mo):
     return
 
 
+@app.cell
+def _(freight_charges):
+    less_than_25 = [] # creating an empty list to store charges
+    for charges in freight_charges: # for every iteration in freight charges
+        if charges < 25: # if the iteration is less than 25
+            less_than_25.append(charges) # append that charge to the new empty list
+
+    print(less_than_25)
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
