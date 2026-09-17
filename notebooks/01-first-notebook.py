@@ -95,7 +95,7 @@ def _(mo):
 
 @app.cell
 def _():
-    freight_charges = [16.75, 22.25, 25.00, 20.25, 36.25]
+    freight_charges = [999.99, 22.25, 25.00, 20.25, 36.25]
     freight_charges
     return (freight_charges,)
 
@@ -141,7 +141,8 @@ def _(freight_charges):
 
 @app.cell
 def _(freight_charges):
-    sum(freight_charges)
+    total = sum(freight_charges)
+    total
     return
 
 
@@ -174,7 +175,15 @@ def _(mo):
 
 @app.cell
 def _():
-    #
+    ### my hypotheses ###
+
+    # if I change 16.75 to 999.99 in the freight_charges cell, and only run the first cell, since 16.75 is the first on and now replaced to 999.99, when i print freight_charges[0] it will return the new number, 999.99. If i then run all 3 cells, the second cell would remain the same since it's only counting the amount of entries in the list, and the third cell would update to a summation of all the values with the new 999.99. 
+
+    # if i delete the freight charges cell (assuming i'm deleting the origional one with the list of numbers), the 3 cells would return an error message because freight_charges is not defined. 
+
+    # if i change the value of total to 1, it should overwrite the old value of total and print just 1. 
+
+    # if i drag the cell that defines total below the total request, it should once again return an error message since total is not yet defined. 
     return
 
 
@@ -197,6 +206,16 @@ def _(mo):
 
     📖 Handbook: Python §1 Variables and values
     """)
+    return
+
+
+@app.cell
+def _():
+    ### what happened ###
+
+    # as i thought, the the request for the 1st position in the list (freight[0]) was updated and it returned 999.99. the second cell didnt change, and the third cell returned the updated sum of 1103.74. 
+
+    # 
     return
 
 
@@ -233,6 +252,54 @@ def _(mo):
     6. `orders * 2`, then `orders + freight_charges`. Neither one is an error.
     7. `sorted(freight_charges)`, then `sorted(freight_charges, reverse=True)`. What did `reverse=True` change, and did `freight_charges` itself change?
     """)
+    return
+
+
+@app.cell
+def _(freight_charges):
+    freight_charges[1] # should return the second value in the list 
+    # returned: 22.25
+    return
+
+
+@app.cell
+def _(freight_charges):
+    freight_charges[:3] # honestly im not sure what it will do but i am assuming that it will return the first 3 entries
+    # lucky guess, it returned the first 3 entries. 
+    return
+
+
+@app.cell
+def _(freight_charges, orders):
+    orders[0],freight_charges[0] # they are both returning the first entry in the list
+    return
+
+
+@app.cell
+def _():
+    category = "Confections" #creating a variable category, which is a string
+    len(category) # should return the amount of letters in that string
+    return
+
+
+@app.cell
+def _(orders):
+    sum(orders) # why shouldn't it run? were adding up all the numeric variables in the list, just like sum(freight_charges)
+    return
+
+
+@app.cell
+def _(freight_charges, orders):
+    orders*2 # i expect this to multiply each value in the list by 2 ## it did not, it printed the list twice
+    orders + freight_charges #i expect this to return both lists 
+    return
+
+
+@app.cell
+def _(freight_charges):
+    sorted(freight_charges) # i expect this to sort the list in numeric order
+    sorted(freight_charges, reverse=True) # i expect this to sort the list in descending numeric order
+    # the origional freight charge list itself did not change, just the way we return the variable. 
     return
 
 
