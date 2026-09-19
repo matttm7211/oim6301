@@ -95,7 +95,7 @@ def _(mo):
 
 @app.cell
 def _():
-    freight_charges = [999.99, 22.25, 25.00, 20.25, 36.25]
+    freight_charges = [16.75, 22.25, 25.00, 20.25, 36.25]
     freight_charges
     return (freight_charges,)
 
@@ -513,7 +513,9 @@ def _(freight_charges):
         if charges < 25: # if the iteration is less than 25
             less_than_25.append(charges) # append that charge to the new empty list
 
-    print(less_than_25)
+
+    print(f"There are {len(less_than_25)} charges in this list and the total of the charges add up to ${sum(less_than_25)}")
+    print(less_than_25) # the order that is equal to 25 was added to the list because we changed the formula
     return
 
 
@@ -555,6 +557,24 @@ def _(mo):
     return
 
 
+@app.cell
+def _():
+    # The last cell ran an error because there is no module, or package, named pandsa. We made a typo which python does not recognize
+    return
+
+
+@app.cell
+def _():
+    # the error we get is that there is no such file or directory. Meaning that the file we are trying to open does not exist
+    return
+
+
+@app.cell
+def _():
+    # the error given was that we never closed the square bracket. 
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
@@ -564,6 +584,12 @@ def _(mo):
 
     `max(["9.50", "16.75", "22.25"])`
     """)
+    return
+
+
+@app.cell
+def _():
+    max(["9.50", "16.75", "22.25"]) # this gives me '9.50' because weve asked it to return the max on a string not floats. 9 comes before 1 & 2 
     return
 
 
@@ -613,6 +639,14 @@ def _(mo):
     return
 
 
+@app.cell
+def _():
+    # 1. python names line 3 - total = sum(freight_charges) as the line that causes an error
+    # I would change line line 1 because we have a string mixed in with floats, so i would correct that error before trying to get the total
+    # In order to fix the error, I would probably create a for loop which looks at the values of freight_charges, and if they are "pending" remove them from the list that i want to total up 
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
@@ -639,6 +673,18 @@ def _(mo):
 
     The square brackets inside `_ax.bar(...)` are a **list comprehension**, which **iterates** over `orders` and turns each number into text.
     """)
+    return
+
+
+@app.cell
+def _(freight_charges, orders):
+    import matplotlib.pyplot as plt
+
+    _fig, _ax = plt.subplots(figsize=(6, 2.6))
+    _ax.bar([str(_o) for _o in orders], freight_charges)
+    _ax.set_ylabel("freight")
+    _fig
+
     return
 
 
