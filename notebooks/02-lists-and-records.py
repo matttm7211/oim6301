@@ -78,6 +78,44 @@ def _(mo):
 
 @app.cell
 def _():
+    cost = float(input("Input your cost: "))
+    tax = float(input("Input the tax: "))
+    #total_cost = cost + tax
+
+
+    print(f"The total is ${cost+tax}")
+    return (cost,)
+
+
+@app.cell
+def _(cost):
+    type(cost)
+    return
+
+
+@app.cell
+def _():
+    freight_charges = [34.50,16.99,4.99,26.57]
+    print(freight_charges)
+    charge_number = 0
+    budget = float(input())
+
+    for i in freight_charges:
+        charge_number = charge_number + 1
+        total_tax = i * 0.02
+        total = total_tax + i
+        if total <= budget:
+            print(f"Charge {charge_number}, is UNDER budget at ${total:.2f}, by ${budget-total:.2f}.\n")
+        elif budget < total < budget+1:
+            print(f"Charge {charge_number}, is at budget on budget at ${total:.2f}\n")
+        else: 
+            print(f"Charge {charge_number}, is OVER budget by ${total-budget:.2f}.\n")
+        #print(f"Total charges are  ${total:.2f}")
+    return
+
+
+@app.cell
+def _():
     # Your own example of each name.
 
     # 1. value:
@@ -229,7 +267,7 @@ def _():
         print("Pass")
     elif score >= 90:
         print("A")
-    return (score,)
+    return
 
 
 @app.cell(hide_code=True)
@@ -256,7 +294,7 @@ def _(mo):
 def _():
     statuses = ["shipped", "pending", "shipped", "cancelled", "shipped"]
     statuses
-    return (statuses,)
+    return
 
 
 @app.cell(hide_code=True)
@@ -285,7 +323,7 @@ def _():
     order_lines = ["notebook", "pen"]
     order_lines.append(["stapler", "tape"])
     len(order_lines)
-    return (order_lines,)
+    return
 
 
 @app.cell(hide_code=True)
@@ -315,7 +353,7 @@ def _():
     print(sorted(tickers))
     print(tickers.sort())
     tickers
-    return (tickers,)
+    return
 
 
 @app.cell(hide_code=True)
@@ -351,7 +389,7 @@ def _():
     sale_prices = prices
     sale_prices.append(4.99)
     prices
-    return (prices, sale_prices,)
+    return
 
 
 @app.cell(hide_code=True)
