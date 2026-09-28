@@ -98,18 +98,18 @@ def _():
     freight_charges = [34.50,16.99,4.99,26.57]
     print(freight_charges)
     charge_number = 0
-    budget = float(input())
+    budget = float(input("Input your max budget: "))
 
     for i in freight_charges:
         charge_number = charge_number + 1
         total_tax = i * 0.02
         total = total_tax + i
         if total <= budget:
-            print(f"Charge {charge_number}, is UNDER budget at ${total:.2f}, by ${budget-total:.2f}.\n")
+            print(f"Charge {charge_number} is UNDER budget at ${total:.2f}, by ${budget-total:.2f}.\n")
         elif budget < total < budget+1:
-            print(f"Charge {charge_number}, is at budget on budget at ${total:.2f}\n")
+            print(f"Charge {charge_number} is ON budget on budget at ${total:.2f}\n")
         else: 
-            print(f"Charge {charge_number}, is OVER budget by ${total-budget:.2f}.\n")
+            print(f"Charge {charge_number} is OVER budget by ${total-budget:.2f}.\n")
         #print(f"Total charges are  ${total:.2f}")
     return
 
@@ -183,7 +183,12 @@ def _(mo):
 @app.cell
 def _():
     charges = [16.75, 22.25, 25.00, 20.25, 36.25]
-    charges
+    total_2 = 0
+    for charge in charges:
+        if charge < 25:
+            total_2 = total_2 + charge
+    total_2
+
     return
 
 
@@ -214,6 +219,14 @@ def _(mo):
       is one. Read its answer, ask it to explain any line you could not have written, and
       finish by asking which concepts it used. The four steps are at the top of this
       notebook.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    This is a markdown cell
     """)
     return
 
@@ -262,11 +275,21 @@ def _(mo):
 
 @app.cell
 def _():
-    score = 95
-    if score >= 60:
-        print("Pass")
-    elif score >= 90:
+    score = 90
+    if score >= 90:
         print("A")
+    elif score >= 60:
+        print("Pass")
+    else:
+        print("Fail")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    If there is a number that satisfies both, it will chose the A over pass, since it comes first in the conditioning.
+    """)
     return
 
 
@@ -294,6 +317,21 @@ def _(mo):
 def _():
     statuses = ["shipped", "pending", "shipped", "cancelled", "shipped"]
     statuses
+    return (statuses,)
+
+
+@app.cell
+def _(statuses):
+    shipped_counter = 0
+    not_shipped = 0
+    for status in statuses:
+        if status == "shipped":
+            shipped_counter = shipped_counter + 1
+        else:
+            not_shipped = not_shipped + 1
+    print(f"There were {shipped_counter} orders shipped.")
+    print(f"There are {not_shipped} orders either pending or cancelled.")
+    print(f"The percentage of orders shipped is {shipped_counter/len(statuses)*100:.0f}%.")
     return
 
 
@@ -321,8 +359,17 @@ def _(mo):
 @app.cell
 def _():
     order_lines = ["notebook", "pen"]
-    order_lines.append(["stapler", "tape"])
-    len(order_lines)
+    order_lines.extend(["stapler", "tape"])
+    print(len(order_lines))
+    print(order_lines)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    The append function only adds 1 item to a list. To add multiple items to a list at once, use the `extend` function instead.
+    """)
     return
 
 
@@ -351,8 +398,21 @@ def _(mo):
 def _():
     tickers = ["NVDA", "AAPL", "MSFT"]
     print(sorted(tickers))
-    print(tickers.sort())
+    print(tickers.sort(reverse=True))
     tickers
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    sorter(tickers) creates a new list which is why it returns a list, but tickers.sort rearrages the origional list that we had, if we print tickers afterwards we can see how the origional list is now sorted.
+    """)
+    return
+
+
+@app.cell
+def _():
     return
 
 
@@ -386,9 +446,23 @@ def _(mo):
 @app.cell
 def _():
     prices = [12.50, 8.00, 19.99]
-    sale_prices = prices
+    sale_prices = prices[:]
     sale_prices.append(4.99)
-    prices
+    prices is sale_prices
+
+    for price in range(len(sale_prices)):
+        sale_prices[price] = sale_prices[price] * 0.9
+
+    print(prices)       # unchanged
+    print(sale_prices)  # each price reduced by 10%
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    creating a new list is good if you dont want to mess up the origional list. Iterating on the origional can also be good if the list is changing and you want it to update for the other function.
+    """)
     return
 
 
