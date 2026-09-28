@@ -631,6 +631,23 @@ def _(mo):
     return
 
 
+@app.cell
+def _(first_order):
+    first_order["Freight"]
+    #first_order["freight"]
+    #first_order[0]
+
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    The second two fail because of the case sensitive freight, and because it is not a list and has to be called by name
+    """)
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
@@ -720,6 +737,33 @@ def _(mo):
     return
 
 
+@app.cell
+def _(orders):
+    total_freight = sum(order["Freight"] for order in orders)
+    print(total_freight)
+
+    no_date = 0
+    for order in orders:
+        if order["ShippedDate"] is None:
+            no_date += 1
+
+    print(no_date)
+
+    largest = max(order["Freight"] for order in orders)
+    print(largest)
+
+
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    The 3 orders with no shipped date all have an order date in 2018, so it could be the case where it is not shipped yet because it hasnt happened yet. When this data was accumulated it was probably in the future.
+    """)
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
@@ -740,11 +784,13 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    *One row is ...*
-
-    *(Replace this line with your own sentence. If this cell shows you code instead of
-    text, use the cell menu to turn it into a markdown cell.)*
+    *One row is a single entry in the table, representing one record of data. One row represents all the information for that one particular order. If someone puts in an order and all the data is gathered from that order, it would add 1 row to the table. *
     """)
+    return
+
+
+@app.cell
+def _():
     return
 
 
