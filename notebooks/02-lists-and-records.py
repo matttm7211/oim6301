@@ -189,7 +189,7 @@ def _():
             total_2 = total_2 + charge
     total_2
 
-    return
+    return (charges,)
 
 
 @app.cell(hide_code=True)
@@ -332,7 +332,7 @@ def _(statuses):
     print(f"There were {shipped_counter} orders shipped.")
     print(f"There are {not_shipped} orders either pending or cancelled.")
     print(f"The percentage of orders shipped is {shipped_counter/len(statuses)*100:.0f}%.")
-    return
+    return (shipped_counter,)
 
 
 @app.cell(hide_code=True)
@@ -494,6 +494,26 @@ def _():
     return
 
 
+@app.cell
+def _():
+    print(float("100")+float("50"))
+    return
+
+
+@app.cell
+def _():
+    print(float("100.5")+float("50"))
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    adding the two strings together simply combined them into 1 string
+    """)
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
@@ -513,6 +533,42 @@ def _(mo):
     > `3 of 5 orders shipped (60%)`. An f-string is the short way to build a sentence out of
     > values, and it was section 5 of last week's notebook.
     """)
+    return
+
+
+@app.cell
+def _():
+    #charges[5]
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    There is no item 5 because in python a list starts at 0. 0,1,2,3, = len of 5
+    """)
+    return
+
+
+@app.cell
+def _(charges):
+    print(charges[-1])
+    print(charges[len(charges)-1])
+    #charges[-6]
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    were asking it to return the item 6 in from last, but we only have 5 items total.
+    """)
+    return
+
+
+@app.cell
+def _(shipped_counter, statuses):
+    print(f"{shipped_counter} of {len(statuses)} orders shipped ({round(shipped_counter / len(statuses) * 100):.0f}%).")
     return
 
 
