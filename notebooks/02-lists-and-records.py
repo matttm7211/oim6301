@@ -188,7 +188,6 @@ def _():
         if charge < 25:
             total_2 = total_2 + charge
     total_2
-
     return (charges,)
 
 
@@ -636,7 +635,6 @@ def _(first_order):
     first_order["Freight"]
     #first_order["freight"]
     #first_order[0]
-
     return
 
 
@@ -752,7 +750,6 @@ def _(orders):
     largest = max(order["Freight"] for order in orders)
     print(largest)
 
-
     return
 
 
@@ -827,6 +824,48 @@ def _():
         {"Symbol": "TSLA", "Shares": 150, "Price": 255.70},
     ]
     portfolio
+
+
+    return (portfolio,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    much like the last part of the previous question, instead of using max, i would try to use the sum function for the orders in orders, but we would also have to multiply it by the amount of stock for each price.
+    """)
+    return
+
+
+@app.cell
+def _(portfolio):
+    total_value = sum(stock["Price"] * stock["Shares"] for stock in portfolio)
+    print(f"The total value of the portfolio is ${total_value:.2f}.")
+    return
+
+
+@app.cell
+def _():
+    # similar problem 
+    # question = which item cost the most to restock
+    inventory = [
+        {"Item": "Notebook", "Quantity": 500, "UnitCost": 1.25},
+        {"Item": "Pen", "Quantity": 1200, "UnitCost": 0.45},
+        {"Item": "Stapler", "Quantity": 80, "UnitCost": 6.75},
+        {"Item": "Tape", "Quantity": 300, "UnitCost": 2.10},
+        {"Item": "Binder", "Quantity": 150, "UnitCost": 3.50},
+    ]
+    inventory
+
+    max_cost = max(item["Quantity"] * item["UnitCost"] for item in inventory)
+    print(max_cost)
+
+    max_item = None
+    for item in inventory: 
+        if item["Quantity"] * item["UnitCost"] == max_cost: 
+            max_item = item["Item"]
+            break
+    print(max_item)
     return
 
 
@@ -878,6 +917,11 @@ def _(mo):
         _where = f"could not write into {_data_dir.name}/: {_error}"
 
     _where
+    _lines
+
+    for line in _lines:
+        line.split(",")
+        print()
     return
 
 
