@@ -2,4 +2,4 @@
 Course work for oim6301
 
 Name: Matthew Brunton   
-email: matthewbrunton@babson.edu
+Email: mbrunton1@babson.edu
