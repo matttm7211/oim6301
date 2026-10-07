@@ -562,7 +562,7 @@ def _(requests):
     )
     babson_reply = requests.get(babson_url, timeout=10)
     babson_reply.status_code
-    return (babson_reply,)
+    return babson_reply, babson_url
 
 
 @app.cell(hide_code=True)
@@ -574,7 +574,8 @@ def _(mo):
 
 
 @app.cell
-def _(babson_reply):
+def _(babson_reply, babson_url):
+    print(babson_url)
     babson_weather = babson_reply.json()
     babson_weather
     return (babson_weather,)
@@ -685,11 +686,24 @@ def _(mo):
     return
 
 
+@app.cell
+def _(babson_weather):
+    print(babson_weather)
+
+    print(f"The windspeed of babson's wind is {babson_weather['current']['wind_speed_10m']} {babson_weather['current_units']['wind_speed_10m']}")
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
     **F · Another town.** Search for `Wellesley` the way the misspelled search did, with the correct spelling. Take the first place out of `results`, then its `latitude`, `longitude` and `admin1`. *Check yourself: latitude 42.29649, in Massachusetts.*
     """)
+    return
+
+
+@app.cell
+def _():
     return
 
 
