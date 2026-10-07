@@ -42,8 +42,11 @@ def _(mo):
     return
 
 
-@app.cell
-def _():
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    The question I will be working on is question c) Rebalancing a Portfolio. Rebalancing a portfolio is important because it helps someone keep their desired allocation of stocks based off their risk preference. Rebalancing a portfolio is important because market trends change often and based on the risk that someone is willing to make, they made need to rebalance the allocations of each stock percentage in order to stay at the risk level they desire. If rebalancing isn't done, then over time someone might end up with a portfolio that has way more risk then they are willing to take, or not enough risk for them to reach their financial goals. This project will help them make the decision on when to rebalance their portfolio based on how far the current allocation of their portfolio has strayed from their target allocation.
+    """)
     return
 
 
@@ -58,6 +61,16 @@ def _(mo):
     - *Which check will you use in section 6, and which two numbers should agree?*
 
     *Commit this notebook with the message `mp1: plan before AI`.*
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    The first thing I would do would be to add up all the current shares in the portfolio and then divide them by the portion of each stock to see how close they fall to the current allocation. My loop would carry for every stock in the portfolio, add up the current shares of every stock to an empty list, then calculate the percentage of each stock by dividing the current shares by the total shares. By doing so, I can check how close the current allocation falls to the target allocation. I would then take the current allocation and subract it from the target allocation by indexing the target allocation dictionary's keys values. This would then give me the difference in allocation, where I would then determin 1. If it needs to be changed based on a metric I come up with (e.g. If I want each allocation to be within a certain percentage like +/- 2% for example) 2. I would determin if the stock is over or under weight and then change the allocation by either buying or selling the stock and then substracting or adding the cost or profit to the origional cash value. I would then repeat this process for each stock and their allocation untill all the allocations are within target range, but also making sure that we have enough cash left to purchase more stock if need be. Once all the allocation are within range I would probably make a new list of which trades to buy/sell in order to satisfy the allocation to send to a broker to do the trades.
+
+    How I would check if the numbers agree is by comparing the total porfolio value after all the trades are made, to the origional value of the portfolio without the trades because the value should remain the same since the value of the portfolio should not change but rather just the allocation percentages should change. If the values of each porfolio matches, I would know that the reallocation worked.
     """)
     return
 
