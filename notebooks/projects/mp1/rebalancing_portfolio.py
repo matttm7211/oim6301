@@ -89,7 +89,17 @@ def _(mo):
 
 @app.cell
 def _():
-    # Your inputs.
+    holdings = [
+        ("AAPL", 100, 173.93),
+        ("MSFT", 50, 319.53),
+        ("GOOG", 80, 131.36),
+        ("AMZN", 200, 129.33),
+        ("NVDA", 20, 410.17),
+        ("TSLA", 150, 255.70),
+    ]
+    cash = 5000.00
+    target_weights = {"AAPL": 0.20, "MSFT": 0.20, "GOOG": 0.15,
+                      "AMZN": 0.15, "NVDA": 0.15, "TSLA": 0.15}
     return
 
 
@@ -103,9 +113,79 @@ def _(mo):
     return
 
 
-@app.cell
-def _():
-    return
+app._unparsable_cell(
+    """
+    ### ----------------- Creating Functions ----------------- ###
+
+
+    def portfolio_value(portfolio): 
+        \"\"\"
+        This function takes a portfolio as an input and returns the total value of that portfolio including cash
+        portfolio_value(holdings) -> will give you the total value of all the stocks in the portfolio including cash
+        \"\"\"
+        total = 0
+        for stock in portfolio:
+            symbol, quantity, price = stock
+            total += quantity * price
+        total += cash
+        return f'The porfolio is worth ${total:,.2f}.'
+
+
+    def stock_value(name):
+        \"\"\" 
+        This function takes an stock as an input and returns its value
+        stock_value('stock name') -> will give you the value of what all the stock is worth
+        \"\"\"
+        for stock in holdings:
+            symbol, quantity, price = stock
+            if symbol == name:
+                return f'{symbol} is currently worth ${quantity*price:,.2f}.'
+        return f'{name} not found in portfolio.'
+
+
+    def current_weights(portfolio):
+        \"\"\"
+        This function checks the portfolio you input to see what the current weights are of each stock not including cash
+        \"\"\"
+        total = 0
+        for stock in portfolio:
+            symbol, quantity, price = stock
+            total += quantity * price
+
+        for stock in portfolio:
+            symbol, quantity, price = stock
+            weight = (quantity * price) / total
+            print(f'{symbol} current weight: {weight:.2%}')
+
+
+    def target_allocation(portfolio):
+        \"\"\"
+        this function creates a dictionary of the porfolio you input and returns 1. the dollar amount of the target allocation and 2. the amount of shares to reach that allocation
+        \"\"\"
+        total = 0
+        for stock in portfolio:
+            symbol, quantity, price = stock
+            total += quantity * price
+        
+        target_allocation = {}
+        for stock in portfolio:
+            symbol, quantity, price = stock
+            target_dollars = target_weights[symbol] * total
+            target_shares = target_dollars // price
+            target_allocation[symbol] = (target_dollars, target_shares)
+
+        return target_allocation
+
+
+    def trades(portfolio):
+
+
+    #current_weights(holdings)
+    #target_allocation(holdings)
+    #stock_value('AAPL')
+    """,
+    name="_"
+)
 
 
 @app.cell(hide_code=True)
