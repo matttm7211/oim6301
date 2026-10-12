@@ -89,6 +89,8 @@ def _(mo):
 
 @app.cell
 def _():
+    import yfinance as yf
+
     holdings = [
         ("AAPL", 100, 173.93),
         ("MSFT", 50, 319.53),
@@ -97,12 +99,24 @@ def _():
         ("NVDA", 20, 410.17),
         ("TSLA", 150, 255.70),
     ]
+
+    import yfinance as yf
+
+    updated_holdings = []
+    for sn, sp, old_price in holdings:
+        new_price = yf.Ticker(sn).fast_info["last_price"]
+        updated_holdings.append((sn, sp, new_price))
+
+    print(f"{'Ticker':<7}{'Shares':>9}{'RealPrice':>11}")
+    for sn, sp, new_price in updated_holdings:
+        print(f'{sn:<7} | {sp:>6} | ${new_price:>8,.2f}')
+
+
     cash = 5000.00
     target_weights = {"AAPL": 0.20, "MSFT": 0.20, "GOOG": 0.15,
                       "AMZN": 0.15, "NVDA": 0.15, "TSLA": 0.15}
 
-
-    return cash, holdings, target_weights
+    return cash, holdings, target_weights, updated_holdings
 
 
 @app.cell(hide_code=True)
@@ -168,8 +182,8 @@ def _(cash, holdings, target_weights):
         for stock in portfolio:
             symbol, quantity, price = stock
             total += quantity * price
-    
-    
+
+
         target_allocation = {}
         for stock in portfolio:
             symbol, quantity, price = stock
@@ -181,26 +195,28 @@ def _(cash, holdings, target_weights):
 
 
     #portfolio_value(holdings)
-    current_weights(holdings)
-    target_allocation(holdings)
-    #stock_value('AAPL')
+    #current_weights(updated_holdings)
+    #current_weights(holdings)
+    #target_allocation(updated_holdings)
+    #target_allocation(holdings)
+    stock_value('AAPL')
     return current_weights, target_allocation
 
 
 @app.cell
-def _(cash, holdings, target_weights):
+def _(cash, holdings, target_weights, updated_holdings):
     """
     Calculating the total value of the portfolio including the starting cash
     """
     total_value = 0
-    for symbol, shares, price in holdings:
+    for symbol, shares, price in updated_holdings:
         total_value += shares * price
     total_value += cash
     #print(total_value) #total value of the initial holdings
     #sanity check ^^
 
 
-
+    holdings
 
 
 
@@ -208,7 +224,7 @@ def _(cash, holdings, target_weights):
     Determining the target amount of shares to have based on the target_weights provided
     """
     targets = {}
-    for symbol, shares, price in holdings:
+    for symbol, shares, price in updated_holdings:
         targets[symbol] = (total_value * target_weights[symbol]) // price #assigning a target amount of shares to the dictionary key
     #print(targets) #returns the number of SHARES needed for each ticker
     #sanity check ^^
@@ -223,7 +239,7 @@ def _(cash, holdings, target_weights):
     with target shares, trade needed, resulting value, and resulting weight
     """
     table = []
-    for symbol, shares, price in holdings:
+    for symbol, shares, price in updated_holdings:
         target_shares = targets[symbol]
         trade = target_shares - shares
         value_after = target_shares * price
@@ -240,7 +256,7 @@ def _(cash, holdings, target_weights):
     """
     Determining the amound of cash left after weve made the correcting trades, pulling out trade from the table and the origional price from holdings
     """
-    cash_used = sum(trade*price for (_, _, _, trade, _, _), (_, _, price) in zip(table, holdings))
+    cash_used = sum(trade*price for (_, _, _, trade, _, _), (_, _, price) in zip(table, updated_holdings))
     cash_left = cash - cash_used
     assert cash_left >= 0, "Not enough cash" #assert lets us make sure that cash left is still in the positive, if not it stops the program
     #print(cash, cash_used)
@@ -260,7 +276,6 @@ def _(cash, holdings, target_weights):
         status = "Bellow" if deviation_percentage < 0 else "Above" if deviation_percentage > 0 else "On Target"
         result = "Close Enough" if abs(deviation_percentage) <= 0.5 else "Not Close Enough"
         print(f"{symbol}: {abs(deviation_percentage):.2f}pp {status} target - {result}.")
-
 
     return cash_left, table, total_value
 
@@ -367,7 +382,7 @@ def _(cash_left, table, total_value):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    The way I know that these numbers are correct and that they work is that if we look at the current_weights function i created at the beginning, we can see that the weights are not close to the target weights. This confirms that the portfolio is currently out of balance and needs rebalancing. Once I rebalance the portfolio and we take a look at the new weights, we can see that they all fall in accordance to the target allocations defined at the beginning of this notebook. Aditionally, if we look at the target_allocation function that i created at the beginning, we can see that the number of shares needed for each stock to be balanced, matched up with the number of shares traded (in the table) in order to balance the portfolio. E.G, AAPL was at 100, the target function said 139, and in the table the target also said 139 and shows a trade of +39. And lastly, i made the part where we check the difference between the old and new portfolio value, which should be the same, since we do not add or destroy value we just move some pieces.
+    The way I know that these numbers are correct and that they work is that if we look at the current_weights function i created at the beginning, we can see that the weights are not close to the target weights. This confirms that the portfolio is currently out of balance and needs rebalancing. Once I rebalance the portfolio and we take a look at the new weights, we can see that they all fall in accordance to the target allocations defined at the beginning of this notebook. Aditionally, if we look at the target_allocation function that i created at the beginning, we can see that the number of shares needed for each stock to be balanced, matched up with the number of shares traded (in the table) in order to balance the portfolio. E.G, AAPL was at 100, the target function said 139, and in the table the target also said 139 and shows a trade of +39. And lastly, i made the part where we check the difference between the old and new portfolio value, which should be the same, since we do not add or destroy value we just move some pieces. I also changed the entire notbook to reflect the actual prices, so if any number or information looks off, then that could be why because i am adding this sentence after. Some earlier commits could reflect the actual pre section 8 work.
     """)
     return
 
@@ -402,31 +417,10 @@ def _(mo):
     return
 
 
-@app.cell
-def _():
-    holding = [
-        ("AAPL", 100, 173.93),
-        ("MSFT", 50, 319.53),
-        ("GOOG", 80, 131.36),
-        ("AMZN", 200, 129.33),
-        ("NVDA", 20, 410.17),
-        ("TSLA", 150, 255.70)]
-
-    import yfinance as yf
-
-    updated_holdings = []
-    for symbol, quantity, old_price in holding:
-        new_price = yf.Ticker(symbol).fast_info["last_price"]
-        updated_holdings.append((symbol, quantity, new_price))
-
-    updated_holdings
-    return
-
-
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    I want to use the actual prices using the yahoo finance library bcause i did not know python had a yahoo library and i think it could be useful to someone who actually wants to use something like this in real life.
+    I want to use the actual prices using the yahoo finance library bcause i did not know python had a yahoo library and i think it could be useful to someone who actually wants to use something like this in real life. At the beginning of this notbook i changed holdings to the updated real price of each stock. I then used the yfinance library to pull the current market price for each ticker in my portfolio. This makes the portfolio valuation more realistic and allows the analysis to reflect actual market conditions at the time that the notebook is run. I then went through the notebook and updated any areas where the code was using the old holdings, updating it to the new holdings with the real life price. So now the entire notebook runs on the real life price of the stocks and rebalances it based on the target allocations.
     """)
     return
 
