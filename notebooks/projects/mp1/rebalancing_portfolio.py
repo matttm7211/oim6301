@@ -100,6 +100,8 @@ def _():
     cash = 5000.00
     target_weights = {"AAPL": 0.20, "MSFT": 0.20, "GOOG": 0.15,
                       "AMZN": 0.15, "NVDA": 0.15, "TSLA": 0.15}
+
+
     return cash, holdings, target_weights
 
 
@@ -396,6 +398,35 @@ def _(mo):
     ## 8. Going Further
 
     *Take at least one step past the main task, in any direction, and use your agent as much as you like. It does not have to work. State what you tried, what you found, and where it is in this notebook.*
+    """)
+    return
+
+
+@app.cell
+def _():
+    holding = [
+        ("AAPL", 100, 173.93),
+        ("MSFT", 50, 319.53),
+        ("GOOG", 80, 131.36),
+        ("AMZN", 200, 129.33),
+        ("NVDA", 20, 410.17),
+        ("TSLA", 150, 255.70)]
+
+    import yfinance as yf
+
+    updated_holdings = []
+    for symbol, quantity, old_price in holding:
+        new_price = yf.Ticker(symbol).fast_info["last_price"]
+        updated_holdings.append((symbol, quantity, new_price))
+
+    updated_holdings
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    I want to use the actual prices using the yahoo finance library bcause i did not know python had a yahoo library and i think it could be useful to someone who actually wants to use something like this in real life.
     """)
     return
 
