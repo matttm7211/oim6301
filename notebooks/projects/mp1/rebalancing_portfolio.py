@@ -116,7 +116,7 @@ def _(mo):
 @app.cell
 def _(cash, holdings, target_weights):
     ### ----------------- Creating Functions ----------------- ###
-    ## sanity check functions to check existing information
+    ## sanity check functions to double check at the end
 
     def portfolio_value(portfolio): 
         """
@@ -178,10 +178,11 @@ def _(cash, holdings, target_weights):
         return target_allocation
 
 
+    #portfolio_value(holdings)
     current_weights(holdings)
-    #target_allocation(holdings)
+    target_allocation(holdings)
     #stock_value('AAPL')
-    return
+    return current_weights, target_allocation
 
 
 @app.cell
@@ -193,7 +194,6 @@ def _(cash, holdings, target_weights):
     for symbol, shares, price in holdings:
         total_value += shares * price
     total_value += cash
-
     #print(total_value) #total value of the initial holdings
     #sanity check ^^
 
@@ -208,7 +208,6 @@ def _(cash, holdings, target_weights):
     targets = {}
     for symbol, shares, price in holdings:
         targets[symbol] = (total_value * target_weights[symbol]) // price #assigning a target amount of shares to the dictionary key
-
     #print(targets) #returns the number of SHARES needed for each ticker
     #sanity check ^^
 
@@ -228,7 +227,6 @@ def _(cash, holdings, target_weights):
         value_after = target_shares * price
         weight_after = value_after / total_value
         table.append((symbol, shares, target_shares, trade, value_after, weight_after))
-
     #print(table)
     #sanity check ^^
 
@@ -243,9 +241,12 @@ def _(cash, holdings, target_weights):
     cash_used = sum(trade*price for (_, _, _, trade, _, _), (_, _, price) in zip(table, holdings))
     cash_left = cash - cash_used
     assert cash_left >= 0, "Not enough cash" #assert lets us make sure that cash left is still in the positive, if not it stops the program
-
     #print(cash, cash_used)
     #sanity check ^^
+
+
+
+
 
 
     """
@@ -259,30 +260,7 @@ def _(cash, holdings, target_weights):
         print(f"{symbol}: {abs(deviation_percentage):.2f}pp {status} target - {result}.")
 
 
-
-
-
-
-
-
-
-    """
-    Printint the headers for the table
-    """
-    print(f"{'Ticker'}        {'Now'}           {'Target'}               {'Trade'}              {'ValueAfter'}             {'WeightAfter'}")
-
-    """
-    Iteraring through table, defining one row of the table and then printing a line for each ticker
-    """
-    for row in table:
-        symbol, shares, target_shares, trade, value_after, weight_after = row
-        print(f'{symbol}: currently {shares} shares, target {target_shares} shares, trade {trade:+.0f} shares, value after ${value_after:,.2f}, weight after {weight_after:.2%}')
-
-    """
-    Printing the total portfolio value after the trades and the remaining cash left
-    """
-    print(f"\nTotal portfolio value: ${total_value:,.2f}, Cash left after trades: ${cash_left:,.2f}")
-    return
+    return cash_left, table
 
 
 @app.cell(hide_code=True)
@@ -296,7 +274,37 @@ def _(mo):
 
 
 @app.cell
-def _():
+def _(cash_left, table):
+    ### ----------------- Creating The Table ----------------- ###
+
+    """
+    Printint the headers for the table
+    """
+    print(f"{'Ticker':<7}{'Now':>9}{'Target':>11}{'Trade':>7}{'ValueAfter':>12}{'WeightAfter':>14}")
+
+    """
+    Iteraring through table, defining one row of the table and then printing a line for each ticker
+    """
+    for row in table:
+        a, b, c, d, e, f = row
+        print(f'{a:<7} | {b:>6} | {c:>8} | {d:+.0f} | ${e:,.2f} | {f:.2%}')
+
+    after_total_value = cash_left
+    for row in table:
+        after_total_value += row[4]
+
+    """
+    Printing the total portfolio value after the trades and the remaining cash left
+    """
+    print(f"\nTotal portfolio value: ${after_total_value:,.2f}, Cash left after trades: ${cash_left:,.2f}")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    To asnswer the questions in #1, this project helps people keep track of how far their holdings have strayed from the target allocations. From the table above we can see that the portfolio has drifted quite a bit from the targets and we can now see the amount of trades needed of each stock to rebalance the portfolio, or the amount of trades needed to get them all back to around target weights. As for how close, I felt like a tolerance that was within 0.5 percentage points away from the target was acceptable. and as we see from the deviation percentages, the bigest difference we have is 0.24pp. Seeing as prices of stocks are constantly changing everyday, I like being in this range.
+    """)
     return
 
 
@@ -311,7 +319,17 @@ def _(mo):
 
 
 @app.cell
-def _():
+def _(current_weights, holdings, target_allocation):
+    current_weights(holdings)
+    target_allocation(holdings)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    The way I know that these numbers are correct and that they work is that if we look at the current_weights function i created at the beginning, we can see that the weights are not close to the target weights. This confirms that the portfolio is currently out of balance and needs rebalancing. Once I rebalance the portfolio and we take a look at the new weights, we can see that they all fall in accordance to the target allocations defined at the beginning of this notebook. Aditionally, if we look at the target_allocation function that i created at the beginning, we can see that the number of shares needed for each stock to be balanced, matched up with the number of shares traded (in the table) in order to balance the portfolio. E.G, AAPL was at 100, the target function said 139, and in the table the target also said 139 and shows a trade of +39.
+    """)
     return
 
 
@@ -324,6 +342,11 @@ def _(mo):
 
     *If the agent got it right the first time: what did you do to verify that?*
     """)
+    return
+
+
+@app.cell
+def _():
     return
 
 
