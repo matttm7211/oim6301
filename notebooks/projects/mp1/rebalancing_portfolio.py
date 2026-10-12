@@ -100,7 +100,7 @@ def _():
     cash = 5000.00
     target_weights = {"AAPL": 0.20, "MSFT": 0.20, "GOOG": 0.15,
                       "AMZN": 0.15, "NVDA": 0.15, "TSLA": 0.15}
-    return
+    return cash, holdings, target_weights
 
 
 @app.cell(hide_code=True)
@@ -113,16 +113,16 @@ def _(mo):
     return
 
 
-app._unparsable_cell(
-    """
+@app.cell
+def _(cash, holdings, target_weights):
     ### ----------------- Creating Functions ----------------- ###
-
+    ## sanity check functions to check existing information
 
     def portfolio_value(portfolio): 
-        \"\"\"
+        """
         This function takes a portfolio as an input and returns the total value of that portfolio including cash
         portfolio_value(holdings) -> will give you the total value of all the stocks in the portfolio including cash
-        \"\"\"
+        """
         total = 0
         for stock in portfolio:
             symbol, quantity, price = stock
@@ -132,10 +132,10 @@ app._unparsable_cell(
 
 
     def stock_value(name):
-        \"\"\" 
+        """ 
         This function takes an stock as an input and returns its value
         stock_value('stock name') -> will give you the value of what all the stock is worth
-        \"\"\"
+        """
         for stock in holdings:
             symbol, quantity, price = stock
             if symbol == name:
@@ -144,9 +144,9 @@ app._unparsable_cell(
 
 
     def current_weights(portfolio):
-        \"\"\"
+        """
         This function checks the portfolio you input to see what the current weights are of each stock not including cash
-        \"\"\"
+        """
         total = 0
         for stock in portfolio:
             symbol, quantity, price = stock
@@ -159,14 +159,15 @@ app._unparsable_cell(
 
 
     def target_allocation(portfolio):
-        \"\"\"
+        """
         this function creates a dictionary of the porfolio you input and returns 1. the dollar amount of the target allocation and 2. the amount of shares to reach that allocation
-        \"\"\"
-        total = 0
+        """
+        total = cash
         for stock in portfolio:
             symbol, quantity, price = stock
             total += quantity * price
-        
+    
+    
         target_allocation = {}
         for stock in portfolio:
             symbol, quantity, price = stock
@@ -177,15 +178,111 @@ app._unparsable_cell(
         return target_allocation
 
 
-    def trades(portfolio):
-
-
-    #current_weights(holdings)
+    current_weights(holdings)
     #target_allocation(holdings)
     #stock_value('AAPL')
-    """,
-    name="_"
-)
+    return
+
+
+@app.cell
+def _(cash, holdings, target_weights):
+    """
+    Calculating the total value of the portfolio including the starting cash
+    """
+    total_value = 0
+    for symbol, shares, price in holdings:
+        total_value += shares * price
+    total_value += cash
+
+    #print(total_value) #total value of the initial holdings
+    #sanity check ^^
+
+
+
+
+
+
+    """
+    Determining the target amount of shares to have based on the target_weights provided
+    """
+    targets = {}
+    for symbol, shares, price in holdings:
+        targets[symbol] = (total_value * target_weights[symbol]) // price #assigning a target amount of shares to the dictionary key
+
+    #print(targets) #returns the number of SHARES needed for each ticker
+    #sanity check ^^
+
+
+
+
+
+
+    """
+    Creating a table based on holdings```
+    with target shares, trade needed, resulting value, and resulting weight
+    """
+    table = []
+    for symbol, shares, price in holdings:
+        target_shares = targets[symbol]
+        trade = target_shares - shares
+        value_after = target_shares * price
+        weight_after = value_after / total_value
+        table.append((symbol, shares, target_shares, trade, value_after, weight_after))
+
+    #print(table)
+    #sanity check ^^
+
+
+
+
+
+
+    """
+    Determining the amound of cash left after weve made the correcting trades, pulling out trade from the table and the origional price from holdings
+    """
+    cash_used = sum(trade*price for (_, _, _, trade, _, _), (_, _, price) in zip(table, holdings))
+    cash_left = cash - cash_used
+    assert cash_left >= 0, "Not enough cash" #assert lets us make sure that cash left is still in the positive, if not it stops the program
+
+    #print(cash, cash_used)
+    #sanity check ^^
+
+
+    """
+    Checking deviation after the trades and if its close enough to the target_weights initially defined
+    """
+    for symbol, shares, target_shares, trade, value_after, weight_after in table: 
+        deviation_percentage = (weight_after - target_weights[symbol]) * 100
+        #print(abs(deviation_percentage)) # sanity check
+        status = "Bellow" if deviation_percentage < 0 else "Above" if deviation_percentage > 0 else "On Target"
+        result = "Close Enough" if abs(deviation_percentage) <= 0.5 else "Not Close Enough"
+        print(f"{symbol}: {abs(deviation_percentage):.2f}pp {status} target - {result}.")
+
+
+
+
+
+
+
+
+
+    """
+    Printint the headers for the table
+    """
+    print(f"{'Ticker'}        {'Now'}           {'Target'}               {'Trade'}              {'ValueAfter'}             {'WeightAfter'}")
+
+    """
+    Iteraring through table, defining one row of the table and then printing a line for each ticker
+    """
+    for row in table:
+        symbol, shares, target_shares, trade, value_after, weight_after = row
+        print(f'{symbol}: currently {shares} shares, target {target_shares} shares, trade {trade:+.0f} shares, value after ${value_after:,.2f}, weight after {weight_after:.2%}')
+
+    """
+    Printing the total portfolio value after the trades and the remaining cash left
+    """
+    print(f"\nTotal portfolio value: ${total_value:,.2f}, Cash left after trades: ${cash_left:,.2f}")
+    return
 
 
 @app.cell(hide_code=True)
