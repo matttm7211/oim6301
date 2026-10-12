@@ -260,7 +260,7 @@ def _(cash, holdings, target_weights):
         print(f"{symbol}: {abs(deviation_percentage):.2f}pp {status} target - {result}.")
 
 
-    return cash_left, table
+    return cash_left, table, total_value
 
 
 @app.cell(hide_code=True)
@@ -325,10 +325,47 @@ def _(current_weights, holdings, target_allocation):
     return
 
 
+@app.cell
+def _():
+    # Ticker       Now     Target  Trade  ValueAfter   WeightAfter
+    # AAPL    |    100 |    139.0 | +39 | $24,176.27 | 19.93%
+    # MSFT    |     50 |     75.0 | +25 | $23,964.75 | 19.76%
+    # GOOG    |     80 |    138.0 | +58 | $18,127.68 | 14.94%
+    # AMZN    |    200 |    140.0 | -60 | $18,106.20 | 14.93%
+    # NVDA    |     20 |     44.0 | +24 | $18,047.48 | 14.88%
+    # TSLA    |    150 |     71.0 | -79 | $18,154.70 | 14.97%
+    return
+
+
+@app.cell
+def _(cash_left, table, total_value):
+    ### ----------------- Second, Independent Check ----------------- ###
+
+    """
+    Adding up the dollar value of every stock after the trades, plus the cash left over,
+    using the table from section 4. This is the same total we already printed in
+    section 5, but recalculated here by hand as a second, independent check.
+    """
+    check_total = 0
+    for x in table:
+        check_total += x[4]  # value_after for each stock
+    check_total += cash_left
+
+    """
+    A second way to check: the original portfolio value (before any trades) should
+    equal the rebalanced portfolio value (after trades), since rebalancing only moves
+    money between stocks and cash, it does not create or destroy value.
+    """
+    print(f"\nOriginal portfolio value: ${total_value:,.2f}")
+    print(f"Rebalanced portfolio value: ${check_total:,.2f}")
+    print(f"Difference: ${total_value - check_total:,.2f}")
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    The way I know that these numbers are correct and that they work is that if we look at the current_weights function i created at the beginning, we can see that the weights are not close to the target weights. This confirms that the portfolio is currently out of balance and needs rebalancing. Once I rebalance the portfolio and we take a look at the new weights, we can see that they all fall in accordance to the target allocations defined at the beginning of this notebook. Aditionally, if we look at the target_allocation function that i created at the beginning, we can see that the number of shares needed for each stock to be balanced, matched up with the number of shares traded (in the table) in order to balance the portfolio. E.G, AAPL was at 100, the target function said 139, and in the table the target also said 139 and shows a trade of +39.
+    The way I know that these numbers are correct and that they work is that if we look at the current_weights function i created at the beginning, we can see that the weights are not close to the target weights. This confirms that the portfolio is currently out of balance and needs rebalancing. Once I rebalance the portfolio and we take a look at the new weights, we can see that they all fall in accordance to the target allocations defined at the beginning of this notebook. Aditionally, if we look at the target_allocation function that i created at the beginning, we can see that the number of shares needed for each stock to be balanced, matched up with the number of shares traded (in the table) in order to balance the portfolio. E.G, AAPL was at 100, the target function said 139, and in the table the target also said 139 and shows a trade of +39. And lastly, i made the part where we check the difference between the old and new portfolio value, which should be the same, since we do not add or destroy value we just move some pieces.
     """)
     return
 
@@ -345,8 +382,11 @@ def _(mo):
     return
 
 
-@app.cell
-def _():
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    One part of this project that the agent helped me with was creating the table because I did not understand what you meant by :>7 on the course webpage. However, it did not get the spacing right initially and i had to change the numbers to get the right spacing for the table to look correct. I also added the | for visual appeal to make it easier to look at. Another area was when I used the assert function to make sure that the cash is still positive because i did not know about that function
+    """)
     return
 
 
