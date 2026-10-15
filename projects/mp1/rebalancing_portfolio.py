@@ -100,23 +100,10 @@ def _():
         ("TSLA", 150, 255.70),
     ]
 
-    import yfinance as yf
-
-    updated_holdings = []
-    for sn, sp, old_price in holdings:
-        new_price = yf.Ticker(sn).fast_info["last_price"]
-        updated_holdings.append((sn, sp, new_price))
-
-    print(f"{'Ticker':<7}{'Shares':>9}{'RealPrice':>11}")
-    for sn, sp, new_price in updated_holdings:
-        print(f'{sn:<7} | {sp:>6} | ${new_price:>8,.2f}')
-
-
     cash = 5000.00
     target_weights = {"AAPL": 0.20, "MSFT": 0.20, "GOOG": 0.15,
                       "AMZN": 0.15, "NVDA": 0.15, "TSLA": 0.15}
-
-    return cash, holdings, target_weights, updated_holdings
+    return cash, holdings, target_weights
 
 
 @app.cell(hide_code=True)
@@ -204,12 +191,12 @@ def _(cash, holdings, target_weights):
 
 
 @app.cell
-def _(cash, holdings, target_weights, updated_holdings):
+def _(cash, holdings, target_weights):
     """
     Calculating the total value of the portfolio including the starting cash
     """
     total_value = 0
-    for symbol, shares, price in updated_holdings:
+    for symbol, shares, price in holdings:
         total_value += shares * price
     total_value += cash
     #print(total_value) #total value of the initial holdings
@@ -224,7 +211,7 @@ def _(cash, holdings, target_weights, updated_holdings):
     Determining the target amount of shares to have based on the target_weights provided
     """
     targets = {}
-    for symbol, shares, price in updated_holdings:
+    for symbol, shares, price in holdings:
         targets[symbol] = (total_value * target_weights[symbol]) // price #assigning a target amount of shares to the dictionary key
     #print(targets) #returns the number of SHARES needed for each ticker
     #sanity check ^^
@@ -239,7 +226,7 @@ def _(cash, holdings, target_weights, updated_holdings):
     with target shares, trade needed, resulting value, and resulting weight
     """
     table = []
-    for symbol, shares, price in updated_holdings:
+    for symbol, shares, price in holdings:
         target_shares = targets[symbol]
         trade = target_shares - shares
         value_after = target_shares * price
@@ -256,7 +243,7 @@ def _(cash, holdings, target_weights, updated_holdings):
     """
     Determining the amound of cash left after weve made the correcting trades, pulling out trade from the table and the origional price from holdings
     """
-    cash_used = sum(trade*price for (_, _, _, trade, _, _), (_, _, price) in zip(table, updated_holdings))
+    cash_used = sum(trade*price for (_, _, _, trade, _, _), (_, _, price) in zip(table, holdings))
     cash_left = cash - cash_used
     assert cash_left >= 0, "Not enough cash" #assert lets us make sure that cash left is still in the positive, if not it stops the program
     #print(cash, cash_used)
@@ -276,7 +263,6 @@ def _(cash, holdings, target_weights, updated_holdings):
         status = "Bellow" if deviation_percentage < 0 else "Above" if deviation_percentage > 0 else "On Target"
         result = "Close Enough" if abs(deviation_percentage) <= 0.5 else "Not Close Enough"
         print(f"{symbol}: {abs(deviation_percentage):.2f}pp {status} target - {result}.")
-
     return cash_left, table, total_value
 
 
@@ -422,6 +408,25 @@ def _(mo):
     mo.md(r"""
     I want to use the actual prices using the yahoo finance library bcause i did not know python had a yahoo library and i think it could be useful to someone who actually wants to use something like this in real life. At the beginning of this notbook i changed holdings to the updated real price of each stock. I then used the yfinance library to pull the current market price for each ticker in my portfolio. This makes the portfolio valuation more realistic and allows the analysis to reflect actual market conditions at the time that the notebook is run. I then went through the notebook and updated any areas where the code was using the old holdings, updating it to the new holdings with the real life price. So now the entire notebook runs on the real life price of the stocks and rebalances it based on the target allocations.
     """)
+    return
+
+
+@app.cell
+def _():
+    # import yfinance as yf
+
+    # updated_holdings = []
+    # for sn, sp, old_price in holdings:
+    #     new_price = yf.Ticker(sn).fast_info["last_price"]
+    #     updated_holdings.append((sn, sp, new_price))
+
+    # print(f"{'Ticker':<7}{'Shares':>9}{'RealPrice':>11}")
+    # for sn, sp, new_price in updated_holdings:
+    #     print(f'{sn:<7} | {sp:>6} | ${new_price:>8,.2f}')
+
+
+    ### To run this I would use the same code as above but change all the 'holdings' to 'updated_holdings'
+    ### Did not do it because marimo gets annoyed at using the same variables later in the workbook
     return
 
 
