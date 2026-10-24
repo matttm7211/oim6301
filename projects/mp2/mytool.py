@@ -210,6 +210,7 @@ def _(
     units = product_units(all_lines)
     top5 = top_five_products(units)
     return (
+        all_lines,
         all_orders,
         country_totals,
         data,
@@ -310,7 +311,119 @@ def _(mo):
 
 
 @app.cell
-def _():
+def _(all_lines, top_five_products):
+    def product_revenue(lines):
+        revenue_by_product = {}
+        for line in lines:
+            name = line["product_name"]
+            amount = line["line_total_dollars"]
+            revenue_by_product[name] = revenue_by_product.get(name, 0) + amount
+        return revenue_by_product
+
+    revenue_by_product = product_revenue(all_lines)
+    top5_by_revenue = top_five_products(revenue_by_product)
+    top5_by_revenue
+    return (top5_by_revenue,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **Changes:** **Function 1** - Simply changing the days from 7 to 30 does not actually change anything.
+             **Function 2** - The changes to function 2 are above, and as i expected the top 5 products are different in terms of revenue than for units sold.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **9. Going Further**
+    """)
+    return
+
+
+@app.cell
+def _(all_orders, top5_by_revenue):
+    import polars as pl
+    import altair as alt
+
+
+    revenue_by_day = {}
+    for order in all_orders:
+        day = order["order_date"][:10]
+        revenue_by_day[day] = revenue_by_day.get(day, 0) + order["order_total_dollars"]
+    
+    day_df = pl.DataFrame({
+        "day": list(revenue_by_day.keys()),
+        "revenue": list(revenue_by_day.values()),
+    }).sort("day")
+
+    day_chart = alt.Chart(day_df).mark_bar().encode(
+        x=alt.X("day:N", title="Day"),
+        y=alt.Y("revenue:Q", title="Revenue ($)"),
+        tooltip=["day", "revenue"]
+    ).properties(title="Revenue by Day", width=500, height=300)
+
+
+    ## By product
+    product_names = []
+    product_revenues = []
+    for m, b in top5_by_revenue:
+        product_names.append(m)
+        product_revenues.append(b)
+
+    product_df = pl.DataFrame({"product": product_names, "revenue": product_revenues})
+
+    product_chart = alt.Chart(product_df).mark_bar().encode(
+        x=alt.X("revenue:Q", title="Revenue ($)"),
+        y=alt.Y("product:N", title="Product", sort="-x"),
+        tooltip=["product", "revenue"]
+    ).properties(title="Top 5 Products by Revenue", width=500, height=300)
+    return day_chart, product_chart
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **Revenue By Day Chart**
+    """)
+    return
+
+
+@app.cell
+def _(day_chart):
+    day_chart
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **Revenue By Product**
+    """)
+    return
+
+
+@app.cell
+def _(product_chart):
+    product_chart
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **10. Time Spent**
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    4 hours
+    """)
     return
 
 
