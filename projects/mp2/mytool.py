@@ -56,6 +56,7 @@ def _():
     from datetime import date, timedelta
     import requests
 
+    days = 7
 
     def get_date_range(days):
         today = date.today()
@@ -126,9 +127,9 @@ def _():
 
     def get_top_country(by_country):
         top_country = None
-        top_amount = 0
+        top_amount = None
         for country, amount in by_country.items():
-            if amount > top_amount:
+            if top_amount is None or amount > top_amount:
                 top_country = country
                 top_amount = amount
         return top_country
@@ -236,8 +237,29 @@ def _(mo):
     return
 
 
-@app.cell
-def _():
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    One of the errors I noticed is that the get_top_country function that AI helped me write start with None, so if the every country's revenue is 0 or negative becuase of refunds, the function could raise an error when called. I fixed it by also using a top amount of None, instead of 0, so that if the function gets called and all countries have non-positive revenue, it will still correctly return the country with the highest (least negative) value instead of skipping it due to a default of 0.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **8. Reading it back**
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **Function 1. get_all_orders:** What goes in is a starting date and an ending date. What comes out is a list of every order placed in that date range, pulled from the API until there are no more pages left. One change I'd like to see is if i change in the input cell days=7 to days=30 so that i can get orders for a full month instead of a week. What I expect to change is the date range used to fetch orders will expand from 7 days to 30 days, resulting in more orders being returned in the output list, since `get_all_orders` will now query the API for a full month's worth of data instead of just one week.
+
+    **Function 2. filter_orders_by_status:** What goes in is the list of orders returned by `get_all_orders` along with a target status ("shipped", "cancelled", "pending"). What comes out is a filtered list containing only the orders that match the specified status. One change I'd like to see is if I change the status filter from "shipped" to "cancelled" so that I can review which orders were cancelled instead of which were shipped. What I expect to change is the output list will now contain only orders with a "cancelled" status, filtering out all others, since `filter_orders_by_status` will compare each order's status field against the new target value instead of the old one.
+    """)
     return
 
 
