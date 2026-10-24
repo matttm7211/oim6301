@@ -14,7 +14,7 @@ def _():
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    **Getting started - The question**
+    **1. Getting started - The question**
     """)
     return
 
@@ -30,7 +30,7 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    **My plan**
+    **2. My plan**
     """)
     return
 
@@ -46,8 +46,198 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    **The Main Task**
+    **3. Inputs**
     """)
+    return
+
+
+@app.cell
+def _():
+    from datetime import date, timedelta
+    import requests
+
+
+    def get_date_range(days):
+        today = date.today()
+        from_date = today - timedelta(days=days - 1)
+        return from_date.isoformat(), today.isoformat()
+
+
+    def get_orders(from_date_str, to_date_str):
+        response = requests.get(
+            "https://oim.zhili.dev/shop/orders",
+            params={"from_date": from_date_str, "to_date": to_date_str},
+        )
+        return response.json()
+
+    def get_all_orders(from_date_str, to_date_str):
+        orders = []
+        page = 1
+        more_pages = True
+
+        while more_pages:
+            page_response = requests.get(
+                "https://oim.zhili.dev/shop/orders",
+                params={"from_date": from_date_str, "to_date": to_date_str, "page": page},
+            )
+            page_data = page_response.json()
+
+            for order in page_data["items"]:
+                orders.append(order)
+
+            more_pages = page_data["pagination"]["has_next"]
+            page += 1
+
+        return orders
+
+
+    def get_order_lines(orders):
+        lines = []
+        for order in orders:
+            line_response = requests.get(f"https://oim.zhili.dev/shop/orders/{order['order_id']}")
+            line_data = line_response.json()
+            for line in line_data["lines"]:
+                lines.append(line)
+        return lines
+
+
+    def total_revenue(orders):
+        total = 0
+        for order in orders:
+            total += order["order_total_dollars"]
+        return total
+
+
+    def revenue_by_country(orders):
+        by_country = {}
+        for order in orders:
+            country = order["ship_country"]
+            by_country[country] = by_country.get(country, 0) + order["order_total_dollars"]
+        return by_country
+
+
+    def get_unshipped(orders):
+        unshipped = []
+        for order in orders:
+            if order["shipped_date"] is None:
+                unshipped.append(order)
+        return unshipped
+
+
+    def get_top_country(by_country):
+        top_country = None
+        top_amount = 0
+        for country, amount in by_country.items():
+            if amount > top_amount:
+                top_country = country
+                top_amount = amount
+        return top_country
+
+    return (
+        get_all_orders,
+        get_date_range,
+        get_order_lines,
+        get_orders,
+        get_top_country,
+        get_unshipped,
+        revenue_by_country,
+        total_revenue,
+    )
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **4. The Work**
+    """)
+    return
+
+
+@app.cell
+def _(
+    get_all_orders,
+    get_date_range,
+    get_order_lines,
+    get_orders,
+    get_top_country,
+    get_unshipped,
+    revenue_by_country,
+    total_revenue,
+):
+    from_date_str, to_date_str = get_date_range(7)
+    data = get_orders(from_date_str, to_date_str)
+    data
+    all_orders = get_all_orders(from_date_str, to_date_str)
+    all_lines = get_order_lines(all_orders)
+    number_of_orders = len(all_orders)
+    revenue = total_revenue(all_orders)
+    country_totals = revenue_by_country(all_orders)
+    unshipped_orders = get_unshipped(all_orders)
+    top_country = get_top_country(country_totals)
+    return (
+        all_orders,
+        country_totals,
+        data,
+        number_of_orders,
+        revenue,
+        top_country,
+        unshipped_orders,
+    )
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **5. The Answer**
+    """)
+    return
+
+
+@app.cell
+def _(
+    country_totals,
+    number_of_orders,
+    revenue,
+    top_country,
+    unshipped_orders,
+):
+    print(f"{'Country':<15}{'Revenue':>12}")
+    for x, y in country_totals.items():
+        print(f"{x:<15}${y:>10,.2f}")
+
+    print()
+    print(f"This week there were {number_of_orders} orders worth ${revenue:,.2f}, with {len(unshipped_orders)} not yet shipped. {top_country} led all countries with ${country_totals[top_country]:,.2f} in revenue.")
+
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **6. How do I know these numbers are right.**
+    """)
+    return
+
+
+@app.cell
+def _(all_orders, data):
+    reported_total = data["pagination"]["total"]
+    collected_total = len(all_orders)
+
+    print(f"The API reports {reported_total} orders; this notebook collected {collected_total}.")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **7. Working with the agent**
+    """)
+    return
+
+
+@app.cell
+def _():
     return
 
 
