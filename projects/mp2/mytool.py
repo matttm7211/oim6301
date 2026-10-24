@@ -56,6 +56,7 @@ def _():
     from datetime import date, timedelta
     import requests
 
+    days = 7
 
     def get_date_range(days):
         today = date.today()
@@ -126,12 +127,40 @@ def _():
 
     def get_top_country(by_country):
         top_country = None
-        top_amount = 0
+        top_amount = None
         for country, amount in by_country.items():
-            if amount > top_amount:
+            if top_amount is None or amount > top_amount:
                 top_country = country
                 top_amount = amount
         return top_country
+
+    def product_units(lines):
+        units = {}
+        for line in lines:
+            name = line["product_name"]
+            qty = line["quantity"]
+            units[name] = units.get(name, 0) + qty
+        return units
+
+
+    def top_five_products(units):
+        items = list(units.items())
+        top5 = []
+        for i in range(5):
+            best_name = None
+            best_qty = None
+            for name, qty in items:
+                picked = False
+                for picked_name, picked_qty in top5:
+                    if picked_name == name:
+                        picked = True
+                if not picked:
+                    if best_qty is None or qty > best_qty:
+                        best_name = name
+                        best_qty = qty
+            if best_name is not None:
+                top5.append((best_name, best_qty))
+        return top5
 
     return (
         get_all_orders,
@@ -140,7 +169,9 @@ def _():
         get_orders,
         get_top_country,
         get_unshipped,
+        product_units,
         revenue_by_country,
+        top_five_products,
         total_revenue,
     )
 
@@ -161,7 +192,9 @@ def _(
     get_orders,
     get_top_country,
     get_unshipped,
+    product_units,
     revenue_by_country,
+    top_five_products,
     total_revenue,
 ):
     from_date_str, to_date_str = get_date_range(7)
@@ -174,12 +207,15 @@ def _(
     country_totals = revenue_by_country(all_orders)
     unshipped_orders = get_unshipped(all_orders)
     top_country = get_top_country(country_totals)
+    units = product_units(all_lines)
+    top5 = top_five_products(units)
     return (
         all_orders,
         country_totals,
         data,
         number_of_orders,
         revenue,
+        top5,
         top_country,
         unshipped_orders,
     )
@@ -198,6 +234,7 @@ def _(
     country_totals,
     number_of_orders,
     revenue,
+    top5,
     top_country,
     unshipped_orders,
 ):
@@ -208,6 +245,16 @@ def _(
     print()
     print(f"This week there were {number_of_orders} orders worth ${revenue:,.2f}, with {len(unshipped_orders)} not yet shipped. {top_country} led all countries with ${country_totals[top_country]:,.2f} in revenue.")
 
+    print()
+    print(f"{'Product':<30}{'Units Sold':>12}")
+    for name, qty in top5:
+        print(f"{name:<30}{qty:>12}")
+
+    top5_text = ""
+    for name, qty in top5:
+        top5_text += f"{name} ({qty}), "
+
+    print(f"The top 5 products by units sold were: {top5_text}")
     return
 
 
@@ -236,8 +283,29 @@ def _(mo):
     return
 
 
-@app.cell
-def _():
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    One of the errors I noticed is that the get_top_country function that AI helped me write start with None, so if the every country's revenue is 0 or negative becuase of refunds, the function could raise an error when called. I fixed it by also using a top amount of None, instead of 0, so that if the function gets called and all countries have non-positive revenue, it will still correctly return the country with the highest (least negative) value instead of skipping it due to a default of 0.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **8. Reading it back**
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **Function 1. get_all_orders:** What goes in is a starting date and an ending date. What comes out is a list of every order placed in that date range, pulled from the API until there are no more pages left. One change I'd like to see is if i change in the input cell days=7 to days=30 so that i can get orders for a full month instead of a week. What I expect to change is the date range used to fetch orders will expand from 7 days to 30 days, resulting in more orders being returned in the output list, since `get_all_orders` will now query the API for a full month's worth of data instead of just one week.
+
+    **Function 2. product_units:** What goes in is a list of order lines, what comes out is a dictionary mapping each product to the total quantity sold. The change i would like to make is instead of going by units sold i want to see what the top 5 products are by revenue. I would assume this changes which products are the top 5 because they all have different prices.
+    """)
     return
 
 
