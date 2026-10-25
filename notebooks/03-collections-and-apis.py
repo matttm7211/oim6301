@@ -159,11 +159,14 @@ def _(mo):
 
     **B ·** USA, France, Germany, Brazil had the most orders
 
-    **C ·**
+    **C ·** 1. List: because ordering, adding, and removing dont necessarilly have values associated with them.
+    2. Set: Because it holds every customer ONCE with no duplicates.
+    3. Dictionary: Because the products have a value associated with them and you can look them up using the key.
+    4. Tuple: because the values are fixed once recorded.
 
-    **D ·**
+    **D ·** 1. The two shapes I would want would be maybe a list of dictionaries one for prices of stock and one for amount of stock so that if the portfolio is big someone can easier search it up. or a list of tuples so because this information is important and we dont want it to get changed accidentally.
 
-    **G ·**
+    **G ·** It would have only taken the first one and even if we arent sure if its the right one. in this case the location is actually in florida not massachussetts.
     """)
     return
 
@@ -465,6 +468,17 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
+    1. List: because ordering, adding, and removing dont necessarilly have values associated with them.
+    2. Set: Because it holds every customer ONCE with no duplicates.
+    3. Dictionary: Because the products have a value associated with them and you can look them up using the key.
+    4. Tuple: because the values are fixed once recorded.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
     ## ✏️ D · The portfolio again
 
     Notebook 2 held the six holdings as a list of dictionaries. Here they are as a list of tuples, one holding per tuple.
@@ -480,6 +494,14 @@ def _(mo):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    1. The two shapes I would want would be maybe a list of dictionaries one for prices of stock and one for amount of stock so that if the portfolio is big someone can easier search it up. or a list of tuples so because this information is important and we dont want it to get changed accidentally.
+    """)
+    return
+
+
 @app.cell
 def _():
     holdings = [
@@ -491,6 +513,35 @@ def _():
         ("TSLA", 150, 255.70),
     ]
     holdings
+    return (holdings,)
+
+
+@app.cell
+def _(holdings):
+    total_cost = 0
+    for _symbol, _shares, _price in holdings:
+        total_cost += _shares * _price
+
+    total_cost
+    return
+
+
+@app.cell
+def _(holdings):
+    _costs = []
+    for _symbol, _shares, _price in holdings:
+        _costs.append(_shares * _price)
+
+    total_cost_v2 = sum(_costs)
+    total_cost_v2
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    I would not have written it this way with the append(share*price)
+    """)
     return
 
 
@@ -703,7 +754,14 @@ def _(mo):
 
 
 @app.cell
-def _():
+def _(requests):
+    wellesley_reply = requests.get(
+        "https://geocoding-api.open-meteo.com/v1/search?name=Wellesley&count=1",
+        timeout=10,
+    )
+    wellesley_reply.status_code, wellesley_reply.json()
+    wellesley_place = wellesley_reply.json()["results"][0]
+    wellesley_place["latitude"], wellesley_place["longitude"], wellesley_place["admin1"]
     return
 
 
@@ -717,6 +775,18 @@ def _(mo):
     return
 
 
+@app.cell
+def _(requests):
+    babson_park_reply = requests.get(
+        "https://geocoding-api.open-meteo.com/v1/search?name=Babson Park&count=1",
+        timeout=10,
+    )
+    babson_park_reply.status_code, babson_park_reply.json()
+    babson_park_place = babson_park_reply.json()["results"][0]
+    babson_park_place["name"], babson_park_place["admin1"], babson_park_place["country"]
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
@@ -725,11 +795,36 @@ def _(mo):
     return
 
 
+@app.cell
+def _(requests):
+    babson_daily_url = (
+        "https://api.open-meteo.com/v1/forecast"
+        "?latitude=42.2987&longitude=-71.2595"
+        "&current=temperature_2m,wind_speed_10m"
+        "&daily=temperature_2m_max,temperature_2m_min"
+        "&temperature_unit=fahrenheit&wind_speed_unit=mph"
+        "&timezone=America/New_York"
+    )
+    babson_daily_reply = requests.get(babson_daily_url, timeout=10)
+    babson_daily_weather = babson_daily_reply.json()
+    babson_daily_weather["daily"]
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
     > **Advanced · I · A second API.** Kraken, a cryptocurrency exchange, publishes prices with no key: `https://api.kraken.com/0/public/Ticker?pair=XBTUSD`. Request it, then change the pair to `XBTUSX`. Compare the status code and the reply with Open-Meteo's misspelled search. Both answer 200 to a request that failed, and each shows the failure in its own way.
     """)
+    return
+
+
+@app.cell
+def _(requests):
+    kraken_reply = requests.get("https://api.kraken.com/0/public/Ticker?pair=XBTUSD", timeout=10)
+    kraken_reply.status_code, kraken_reply.json()
+    kraken_bad_reply = requests.get("https://api.kraken.com/0/public/Ticker?pair=XBTUSX", timeout=10)
+    kraken_bad_reply.status_code, kraken_bad_reply.json()
     return
 
 
