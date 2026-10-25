@@ -404,8 +404,23 @@ def _(mo):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    I expect a fewer number of towns will be at this new threshold, i also expect the counties with a lot of towns to have less town meeting that threshold.
+    """)
+    return
+
+
 @app.cell
-def _():
+def _(pl, town_table):
+    million_dollar_share_2m = (
+        town_table.filter(pl.col("average_single_family_value_dollars") >= 2_000_000)
+        .group_by("county")
+        .agg(pl.len().alias("towns"))
+        .sort("towns", descending=True)
+    )
+    million_dollar_share_2m
     return
 
 
@@ -459,6 +474,23 @@ def _(mo):
 
     **Going further.** Color the bars or dots by a column with `color=`, and explain what the colors add.
     """)
+    return
+
+
+@app.cell
+def _(alt, mo, town_table):
+    population_vs_income_chart = mo.ui.altair_chart(
+        alt.Chart(town_table)
+        .mark_circle(size=60)
+        .encode(
+            x=alt.X("population", title="Population"),
+            y=alt.Y("income_per_capita_dollars", title="Income per Capita ($)"),
+            color=alt.Color("county", title="County"),
+            tooltip=["name", "county", "population", "income_per_capita_dollars"],
+        )
+        .properties(title="Income per Capita vs. Population, by Town")
+    )
+    population_vs_income_chart
     return
 
 
