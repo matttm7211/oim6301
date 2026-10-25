@@ -213,7 +213,6 @@ def _(towns_from_file):
 
     county_counts
 
-
     return
 
 
@@ -337,6 +336,28 @@ def _(mo):
     return
 
 
+@app.cell
+def _(pl, town_table):
+    town_counts = (
+        town_table.group_by("county")
+        .agg(pl.len().alias("towns"))
+        .sort("towns", descending=True)
+    )
+    town_counts
+    return
+
+
+@app.cell
+def _(pl, town_table):
+    top_bill_towns = (
+        town_table.filter(pl.col("population") > 50_000)
+        .sort("average_single_family_bill_dollars", descending=True)
+        .head(5)
+    )
+    top_bill_towns
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
@@ -380,6 +401,11 @@ def _(mo):
 
     **Going further.** Write a SQL query of your own on `town_table`, and check its answer in polars.
     """)
+    return
+
+
+@app.cell
+def _():
     return
 
 
