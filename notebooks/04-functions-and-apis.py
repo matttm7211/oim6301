@@ -394,6 +394,13 @@ def _(requests):
         return weather_reply.json()["current"]["temperature_2m"]
 
     get_temperature("Wellesley")
+    return (get_temperature,)
+
+
+@app.cell
+def _(get_temperature):
+    babson_temperature = get_temperature("Babson Park")
+    babson_temperature
     return
 
 
