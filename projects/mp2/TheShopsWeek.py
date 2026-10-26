@@ -56,6 +56,7 @@ def _():
     from datetime import date, timedelta
     import requests
 
+    ## the inputs
     days = 7
 
     def get_date_range(days):
@@ -353,7 +354,7 @@ def _(all_orders, top5_by_revenue):
     for order in all_orders:
         day = order["order_date"][:10]
         revenue_by_day[day] = revenue_by_day.get(day, 0) + order["order_total_dollars"]
-    
+
     day_df = pl.DataFrame({
         "day": list(revenue_by_day.keys()),
         "revenue": list(revenue_by_day.values()),
