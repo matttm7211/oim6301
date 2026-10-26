@@ -180,59 +180,12 @@ def _(mo):
     return
 
 
-@app.cell
-def _(holdings, retirement_holdings):
-    def count_shares(portfolio):
-        total_shares = 0
-        for symbol, shares, price in portfolio:
-            total_shares = total_shares + shares
-        return total_shares
-    count_shares(holdings), count_shares(retirement_holdings)
-    return
-
-
-@app.cell
-def _(holdings, retirement_holdings):
-    def find_largest(portfolio):
-        largest_symbol = ""
-        largest_cost = 0
-        for symbol, shares, price in portfolio:
-            cost = shares * price
-            if cost > largest_cost:
-                largest_cost = cost
-                largest_symbol = symbol
-        return largest_symbol, round(largest_cost, 2)
-    find_largest(holdings), find_largest(retirement_holdings)
-    return
-
-
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
     ## ✏️ B · Without `return`
 
     Copy `count_shares` into a new cell under a new name, and put `print(...)` where the `return` was. Call it and keep the result in a name. In a markdown cell under it, answer: what does that name hold, and what could the next cell do with it?
-    """)
-    return
-
-
-@app.cell
-def _(holdings):
-    def print_shares(portfolio):
-        total_shares = 0
-        for symbol, shares, price in portfolio:
-            total_shares = total_shares + shares
-        print(total_shares)
-
-    shares_result = print_shares(holdings)
-    shares_result
-    return
-
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    The 600 is now considered text instead of return giving back a value.
     """)
     return
 
@@ -404,6 +357,7 @@ def _(get_temperature):
     return
 
 
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
@@ -413,11 +367,6 @@ def _(mo):
 
     *Check yourself: Dover, Wellesley, Cohasset, Needham, Westwood.*
     """)
-    return
-
-
-@app.cell
-def _():
     return
 
 
@@ -433,33 +382,6 @@ def _(mo):
     *Check yourself: `317`. Then $2,020,758 × 10.17 / 1,000 = $20,551.11, and the reply's bill is $20,551.*
 
     **Going further.** Write `town_history(name)`, which takes a town's name, makes both requests, and returns the history.
-    """)
-    return
-
-
-@app.cell
-def _(requests):
-    wellesley_reply = requests.get(
-        "https://oim.zhili.dev/ma/towns",
-        params={"name": "Wellesley"},
-        timeout=10,
-    )
-    wellesley_town = wellesley_reply.json()["items"][0]
-    wellesley_dor_code = wellesley_town["dor_code"]
-    wellesley_dor_code
-    return
-
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    wellesley_history_reply = requests.get(
-        f"https://oim.zhili.dev/ma/towns/{wellesley_dor_code}/history",
-        params={"fiscal_year": 2026},
-        timeout=10,
-    )
-    wellesley_history = wellesley_history_reply.json()
-    wellesley_history
     """)
     return
 
@@ -545,22 +467,6 @@ def _(mo):
     return
 
 
-@app.cell
-def _(get_page):
-    def get_all_towns():
-        first_page = get_page(1)
-        all_towns = first_page["items"]
-        pages = first_page["pagination"]["pages"]
-        for page_number in range(2, pages + 1):
-            next_page = get_page(page_number)
-            all_towns = all_towns + next_page["items"]
-        return all_towns
-
-    all_towns = get_all_towns()
-    len(all_towns), all_towns[0]["name"], all_towns[-1]["name"]
-    return
-
-
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
@@ -619,6 +525,7 @@ def _(requests):
         timeout=10,
     )
     board_reply.status_code, board_reply.json()
+
     return
 
 
