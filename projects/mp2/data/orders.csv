@@ -1,0 +1,34 @@
+order_id,customer_id,customer_name,order_date,required_date,shipped_date,shipper,ship_city,ship_country,freight_dollars,line_count,order_total_dollars,employee_id,employee_name
+19255,KOENE,Königlich Essen,2026-10-30T06:24:50,2026-11-13T23:06:24,,Federal Shipping,Vancouver,Canada,465.75,72,56321.79,7,Robert King
+22135,WILMK,Wilman Kala,2026-10-30T04:19:36,2026-11-29T21:07:29,,Speedy Express,Rio de Janeiro,Brazil,161.0,23,12557.12,4,Margaret Peacock
+18145,WILMK,Wilman Kala,2026-10-29T22:05:22,2026-11-09T17:38:49,,United Package,Berlin,Germany,17.25,1,1322.4,8,Laura Callahan
+19437,VAFFE,Vaffeljernet,2026-10-29T00:56:48,2026-11-17T00:46:23,,Federal Shipping,Bern,Switzerland,384.0,61,39238.97,7,Robert King
+20700,COMMI,Comércio Mineiro,2026-10-28T17:04:15,2026-11-04T04:15:54,,Speedy Express,Charleroi,Belgium,327.75,54,45714.84,9,Anne Dodsworth
+20570,WELLI,Wellington Importadora,2026-10-28T15:06:25,2026-10-31T23:52:49,2026-10-29T13:25:00,United Package,Sao Paulo,Brazil,215.5,36,18738.5,5,Steven Buchanan
+15415,ANTON,Antonio Moreno Taquería,2026-10-28T12:33:25,2026-11-08T17:43:37,,Speedy Express,San Cristóbal,Venezuela,323.25,47,34413.61,4,Margaret Peacock
+22333,CONSH,Consolidated Holdings,2026-10-28T11:27:51,2026-12-01T03:07:24,,Federal Shipping,Helsinki,Finland,133.75,21,9234.73,9,Anne Dodsworth
+21688,QUEEN,Queen Cozinha,2026-10-28T04:23:48,2026-11-07T09:15:51,2026-10-29T17:50:35,Federal Shipping,Nantes,France,513.5,68,65205.05,9,Anne Dodsworth
+23276,KOENE,Königlich Essen,2026-10-27T23:52:55,2026-11-19T11:41:11,2026-10-29T14:23:40,United Package,México D.F.,Mexico,195.5,29,18808.47,8,Laura Callahan
+14298,FRANK,Frankenversand,2026-10-27T12:59:13,2026-10-30T18:14:44,2026-10-29T12:37:36,United Package,Berlin,Germany,138.5,19,11721.38,9,Anne Dodsworth
+17538,GODOS,Godos Cocina Típica,2026-10-27T08:23:46,2026-11-20T10:43:44,2026-10-30T14:00:46,Federal Shipping,Nantes,France,177.5,26,15454.24,9,Anne Dodsworth
+24521,REGGC,Reggiani Caseifici,2026-10-27T06:44:49,2026-10-30T07:19:38,,United Package,Sao Paulo,Brazil,264.75,53,33855.03,2,Andrew Fuller
+22275,MEREP,Mère Paillarde,2026-10-27T02:37:01,2026-11-22T03:25:37,,United Package,Vancouver,Canada,373.75,58,38775.2,4,Margaret Peacock
+25203,CACTU,Cactus Comidas para llevar,2026-10-26T18:56:19,2026-11-07T16:32:05,,United Package,México D.F.,Mexico,151.5,23,15263.3,1,Nancy Davolio
+12487,RANCH,Rancho grande,2026-10-26T14:10:34,2026-10-31T18:18:34,,Federal Shipping,Lisboa,Portugal,14.5,1,180.0,4,Margaret Peacock
+17049,LAZYK,Lazy K Kountry Store,2026-10-26T07:37:38,2026-11-09T14:36:18,,Speedy Express,Resende,Brazil,377.75,62,49228.65,7,Robert King
+26403,WELLI,Wellington Importadora,2026-10-26T06:26:30,2026-12-01T10:52:18,,Federal Shipping,Lyon,France,253.0,36,25714.53,6,Michael Suyama
+15770,GREAL,Great Lakes Food Market,2026-10-26T01:31:05,2026-11-06T08:38:44,,Federal Shipping,Versailles,France,95.25,11,12024.65,3,Janet Leverling
+12223,PICCO,Piccolo und mehr,2026-10-26T00:07:16,2026-11-03T05:00:54,,United Package,Anchorage,USA,282.5,43,33670.02,3,Janet Leverling
+17257,COMMI,Comércio Mineiro,2026-10-25T23:00:43,2026-11-17T08:43:50,,United Package,Sao Paulo,Brazil,282.25,43,33897.66,1,Nancy Davolio
+16037,SPECD,Spécialités du monde,2026-10-25T21:11:33,2026-12-01T13:30:19,2026-10-28T17:57:58,United Package,Versailles,France,324.0,54,30673.96,2,Andrew Fuller
+12873,LAMAI,La maison d'Asie,2026-10-25T12:46:00,2026-11-23T13:04:02,2026-10-28T22:05:08,Federal Shipping,Warszawa,Poland,72.0,10,5130.45,7,Robert King
+26204,FISSA,FISSA Fabrica Inter. Salchichas S.A.,2026-10-25T03:33:49,2026-11-28T06:20:53,2026-10-25T08:03:35,United Package,Helsinki,Finland,108.5,15,15556.73,7,Robert King
+12169,REGGC,Reggiani Caseifici,2026-10-25T03:07:51,2026-11-09T13:19:23,2026-10-26T06:58:54,Federal Shipping,Resende,Brazil,54.25,7,4169.01,8,Laura Callahan
+15630,MORGK,Morgenstern Gesundkost,2026-10-25T01:47:08,2026-11-13T09:35:02,2026-10-28T16:35:33,United Package,Sao Paulo,Brazil,202.0,33,20317.61,8,Laura Callahan
+16101,WANDK,Die Wandernde Kuh,2026-10-25T01:15:50,2026-12-04T21:08:08,2026-10-26T22:27:40,Speedy Express,Berlin,Germany,393.25,55,44844.57,4,Margaret Peacock
+17181,RICAR,Ricardo Adocicados,2026-10-24T23:21:55,2026-11-09T00:59:35,,United Package,Resende,Brazil,150.25,25,26892.55,7,Robert King
+22621,CENTC,Centro comercial Moctezuma,2026-10-24T16:43:44,2026-10-28T18:22:13,2026-10-28T00:06:25,United Package,Seattle,USA,308.75,52,43280.9,4,Margaret Peacock
+13034,FISSA,FISSA Fabrica Inter. Salchichas S.A.,2026-10-24T13:19:35,2026-12-18T08:11:35,,Federal Shipping,Lyon,France,190.0,30,24221.69,4,Margaret Peacock
+20909,LINOD,LINO-Delicateses,2026-10-24T11:45:03,2026-10-24T20:05:19,,United Package,Kirkland,USA,45.25,6,3779.2,7,Robert King
+19586,SPECD,Spécialités du monde,2026-10-24T10:53:55,2026-10-30T01:10:03,2026-10-26T03:07:55,Speedy Express,Oulu,Finland,74.25,11,6657.4,3,Janet Leverling
+25730,OLDWO,Old World Delicatessen,2026-10-24T10:09:36,2026-12-10T22:55:18,,Federal Shipping,San Cristóbal,Venezuela,374.0,62,42033.77,1,Nancy Davolio
