@@ -22,7 +22,7 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    The question I will be working with is question B - The Shop's Week. Here I will be returning one report: the number of orders, the revenue, revenue by country, the five products that sold the most units, and the orders not shipped yet.
+    The question I will be working with is question B - The Shop's Week. Here I will be returning one report: the number of orders, the revenue, revenue by country, the five products that sold the most units, and the orders not shipped yet. **A weekly report like this one would be used by someone who runs a shop and is overseing the day to day operations. A store manager or a small business owner would be someone who uses this for weekly or morning check-ins, someone who is doing a deep financial analysis would most likely not be using something like this.**
     """)
     return
 
@@ -54,10 +54,13 @@ def _(mo):
 @app.cell
 def _():
     from datetime import date, timedelta
+    from pathlib import Path
+    import csv
+    import os
     import requests
 
     ## the inputs
-    days = 7
+    days = 7  # Revision fix
 
     def get_date_range(days):
         today = date.today()
@@ -163,7 +166,31 @@ def _():
                 top5.append((best_name, best_qty))
         return top5
 
+    # Revision fix
+    try:
+        _base_dir = Path(__file__).resolve().parent
+    except NameError:
+        _base_dir = Path.cwd()
+    DATA_DIR = _base_dir / "data"
+
+    def save_csv(filepath, rows):
+        if not rows:
+            return
+        fieldnames = []
+        for row in rows:
+            for key in row.keys():
+                if key not in fieldnames:
+                    fieldnames.append(key)
+        os.makedirs(os.path.dirname(filepath), exist_ok=True)
+        with open(filepath, "w", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames, restval="")
+            writer.writeheader()
+            for row in rows:
+                writer.writerow(row)
+
     return (
+        DATA_DIR,
+        days,
         get_all_orders,
         get_date_range,
         get_order_lines,
@@ -172,6 +199,7 @@ def _():
         get_unshipped,
         product_units,
         revenue_by_country,
+        save_csv,
         top_five_products,
         total_revenue,
     )
@@ -187,6 +215,8 @@ def _(mo):
 
 @app.cell
 def _(
+    DATA_DIR,
+    days,
     get_all_orders,
     get_date_range,
     get_order_lines,
@@ -195,10 +225,11 @@ def _(
     get_unshipped,
     product_units,
     revenue_by_country,
+    save_csv,
     top_five_products,
     total_revenue,
 ):
-    from_date_str, to_date_str = get_date_range(7)
+    from_date_str, to_date_str = get_date_range(days)  # Revision fix
     data = get_orders(from_date_str, to_date_str)
     data
     all_orders = get_all_orders(from_date_str, to_date_str)
@@ -210,6 +241,10 @@ def _(
     top_country = get_top_country(country_totals)
     units = product_units(all_lines)
     top5 = top_five_products(units)
+
+    # Revision fix
+    save_csv(DATA_DIR / "orders.csv", all_orders)
+    save_csv(DATA_DIR / "order_lines.csv", all_lines)
     return (
         all_lines,
         all_orders,
@@ -235,6 +270,7 @@ def _(mo):
 def _(
     country_totals,
     number_of_orders,
+    order,
     revenue,
     top5,
     top_country,
@@ -246,6 +282,17 @@ def _(
 
     print()
     print(f"This week there were {number_of_orders} orders worth ${revenue:,.2f}, with {len(unshipped_orders)} not yet shipped. {top_country} led all countries with ${country_totals[top_country]:,.2f} in revenue.")
+
+    # Revision fix
+    if unshipped_orders:
+        print()
+        print(f"{'Order ID':<12}{'Order Date':<14}{'Country':<15}{'Total':>10}")
+        for item in unshipped_orders:
+            order_id = item.get("order_id")
+            order_date = str(order.get("order_date", ""))[:10]
+            ship_country = item.get("ship_country", "")
+            order_total = item.get("order_total_dollars", 0)
+            print(f"{str(order_id):<12}{order_date:<14}{ship_country:<15}${order_total:>8,.2f}")
 
     print()
     print(f"{'Product':<30}{'Units Sold':>12}")
@@ -304,9 +351,9 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    **Function 1. get_all_orders:** What goes in is a starting date and an ending date. What comes out is a list of every order placed in that date range, pulled from the API until there are no more pages left. One change I'd like to see is if i change in the input cell days=7 to days=30 so that i can get orders for a full month instead of a week. What I expect to change is the date range used to fetch orders will expand from 7 days to 30 days, resulting in more orders being returned in the output list, since `get_all_orders` will now query the API for a full month's worth of data instead of just one week.
+    **Function 1. get_all_orders:** What goes in is a starting date and an ending date. What comes out is a list of every order placed in that date range, pulled from the API until there are no more pages left. One change I'd like to see is if i change in the input cell days=7 to days=30 so that i can get orders for a full month instead of a week. What I expect to change is the date range used to fetch orders will expand from 7 days to 30 days, resulting in more orders being returned in the output list, since `get_all_orders` will now query the API for a full month's worth of data instead of just one week. **The lines that I had to ask about were lines 28-33.**
 
-    **Function 2. product_units:** What goes in is a list of order lines, what comes out is a dictionary mapping each product to the total quantity sold. The change i would like to make is instead of going by units sold i want to see what the top 5 products are by revenue. I would assume this changes which products are the top 5 because they all have different prices.
+    **Function 2. product_units:** What goes in is a list of order lines, what comes out is a dictionary mapping each product to the total quantity sold. The change i would like to make is instead of going by units sold i want to see what the top 5 products are by revenue. I would assume this changes which products are the top 5 because they all have different prices. **The line that I had to ask about was line 91, because I'm still trying to fully understand the .get function.**
     """)
     return
 
@@ -330,7 +377,7 @@ def _(all_lines, top_five_products):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    **Changes:** **Function 1** - Simply changing the days from 7 to 30 does not actually change anything.
+    **Changes:** **Function 1** - In the first revision, simply changing `days` from 7 to 30 did not actually change anything, because the Work cell called `get_date_range(7)` with a hardcoded value instead of `get_date_range(days)`. That bug is fixed in this revision (see section 2.5): the Work cell now calls `get_date_range(days)`, so changing the `days` input in the Inputs cell correctly expands the date range and returns more orders, as originally expected.
              **Function 2** - The changes to function 2 are above, and as i expected the top 5 products are different in terms of revenue than for units sold.
     """)
     return
@@ -381,7 +428,7 @@ def _(all_orders, top5_by_revenue):
         y=alt.Y("product:N", title="Product", sort="-x"),
         tooltip=["product", "revenue"]
     ).properties(title="Top 5 Products by Revenue", width=500, height=300)
-    return day_chart, product_chart
+    return day_chart, order, product_chart
 
 
 @app.cell(hide_code=True)
