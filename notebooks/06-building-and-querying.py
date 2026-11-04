@@ -174,12 +174,6 @@ def _(duckdb, mo):
     return (database,)
 
 
-@app.cell
-def _(gdyadiuahiughiagiuafgifiuagig):
-    gdyadiuahiughiagiuafgifiuagig
-    return
-
-
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
