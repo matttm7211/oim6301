@@ -174,6 +174,25 @@ def _(duckdb, mo):
     return (database,)
 
 
+@app.cell
+def _(database, duckdb):
+    with duckdb.connect(database) as _con:
+        _con.execute("""
+            CREATE TABLE town_bills (
+                name                                VARCHAR NOT NULL REFERENCES towns(name),
+                fiscal_year                         INT NOT NULL,
+                average_single_family_bill_dollars  FLOAT NOT NULL,
+                PRIMARY KEY (name, fiscal_year)
+            )
+        """)
+        _con.execute("""
+            INSERT INTO town_bills VALUES
+                ('Wellesley', 2022, 12345.0),
+                ('Wellesley', 2023, 12800.0)
+        """)
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
@@ -218,6 +237,18 @@ def _(mo):
     return
 
 
+@app.cell
+def _(database, duckdb):
+    try:
+        with duckdb.connect(database) as _con:
+            _con.execute("INSERT INTO town_bills VALUES ('Wellesley', 2022, 13000.0)")
+        _result_a = "accepted"
+    except duckdb.ConstraintException as _error:
+        _result_a = str(_error).splitlines()[0]
+    _result_a
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
@@ -254,6 +285,45 @@ def _(mo):
     return
 
 
+@app.cell
+def _(database, duckdb):
+    try:
+        with duckdb.connect(database) as _con:
+            _con.execute("INSERT INTO towns VALUES ('Wellesley', 'Norfolk', 100, 5000, 10000)")
+            _result_duplicate = "accepted"
+    except duckdb.ConstraintException as _error:
+        _result_duplicate = str(_error).splitlines()[0]
+
+    _result_duplicate
+    return
+
+
+@app.cell
+def _(database, duckdb):
+    try: 
+        with duckdb.connect(database) as _con:
+            _con.execute("INSERT INTO towns VALUES ('Emptyville', 'Norfolk', 0, 5000, 10000)")
+            _result_zero = "accepted"
+    except duckdb.ConstraintException as _error:
+        _result_zero = str(_error).splitlines()[0]
+
+    _result_zero
+    return
+
+
+@app.cell
+def _(database, duckdb):
+    try: 
+        with duckdb.connect(database) as _con:
+            _con.execute("INSERT INTO towns VALUES ('Newtown', 'Atlantis', 100, 5000, 10000)")
+            _result_nocounty = "accepted"
+    except duckdb.ConstraintException as _error:
+        _result_nocounty = str(_error).splitlines()[0]
+
+    _result_nocounty
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
@@ -286,6 +356,38 @@ def _(mo):
     *Check yourself: Brookline, Newton, Cambridge, Somerville, Quincy.*
 
     **Going further.** Ask the same question of `counties` and `towns` together: which county is each of those five in, and what share of its county's people does each hold? That needs both tables at once, which the topic slides call a join.
+    """)
+    return
+
+
+@app.cell
+def _(ask):
+    ask("""
+        SELECT name, population, average_single_family_bill_dollars
+        FROM towns
+        WHERE population > 50000
+        ORDER BY average_single_family_bill_dollars DESC
+        LIMIT 5
+    """)
+    return
+
+
+@app.cell
+def _(ask):
+    # going further
+
+    ask(""" 
+        SELECT
+            towns.name,
+            towns.county,
+            towns.population AS town_population,
+            counties.population AS county_population,
+            ROUND(towns.population*100/counties.population,2) AS percent_of_county
+        FROM towns
+        JOIN counties ON towns.county = counties.name
+        WHERE towns.population>50000
+        ORDER BY towns.average_single_family_bill_dollars DESC
+        LIMIT 5
     """)
     return
 
