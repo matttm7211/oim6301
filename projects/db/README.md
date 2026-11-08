@@ -93,6 +93,7 @@ erDiagram
 
                 The tables cannot enforce the last rule where a task is only assigned to someone who works on its project and not before that persons start date, because checking this would mean comparing the task against a different table (assignment and people) and the standard check can only look at columns within a single table, and it also can handle the "never before that persons start date" part because it doesn't know which start date to refer to and its a date comparison accross multiple tables. I would fix or check for this when I write the code, where i would put the check in the part of the code that saves the tasks, or i could put it in the database itself where it runs a check before updating the table. 
 
+
         And one thing my agent proposed for the design that I changed or did not take:
 
                 I mostly did all of the ERD design myself, where I drew it on paper first and then compared it to the one we did in class to write the code to make the ERD diagram. One thing the agent helped with with, however, is understanding the relationships between tables, and understanding why one of the rules may not work with this table. Another change that it added was the assignment table, I had the other 4 tables on paper, but the agent added the assignment table, which I kept. 
