@@ -132,6 +132,16 @@ def _(ask, northwind_database):
     return
 
 
+@app.cell
+def _(ask, northwind_database):
+    ask(northwind_database, """
+        SELECT column_name, data_type
+        FROM information_schema.columns
+        WHERE table_name = 'customers'
+    """)
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
@@ -231,12 +241,12 @@ def _(mo):
 @app.cell
 def _(ask, towns_database):
     ask(towns_database, """
-        SELECT c.name
+        SELECT c.name, t.name, t.average_single_family_bill_dollars
         FROM counties AS c
         LEFT JOIN towns AS t
             ON t.county = c.name AND t.average_single_family_bill_dollars > 15000
-        WHERE t.name IS NULL
-        ORDER BY c.name
+        WHERE t.name IS NOT NULL
+        ORDER BY t.average_single_family_bill_dollars DESC
     """)
     return
 
@@ -394,6 +404,21 @@ def _(mo):
     *Check yourself: Beverages first, with about 13,375,939, and all eight, added before rounding, give 63,856,337.63.*
 
     **Going further.** Compute revenue by category for each year, and find the category that grew the most.
+    """)
+    return
+
+
+@app.cell
+def _(ask, northwind_database):
+    #Which three customers generated the highest total sales revenue
+
+    ask(northwind_database, """SELECT c.CompanyName, c.CustomerID, round(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount))) AS TotalRevenue
+    FROM customers AS c
+    JOIN orders AS o ON c.CustomerID = o.CustomerID
+    JOIN order_details AS od ON o.OrderID = od.OrderID
+    GROUP BY c.CustomerID, c.CompanyName
+    ORDER BY TotalRevenue DESC
+    LIMIT 3
     """)
     return
 
