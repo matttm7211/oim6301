@@ -132,6 +132,18 @@ def _(database, duckdb, mo, pl):
         _con.execute(f"""
             COPY expenses FROM '{data_dir / "expenses.csv"}' (HEADER, AUTO_DETECT TRUE)
         """)
+
+
+        _con.execute("""
+            CREATE VIEW project_summary AS
+            SELECT
+                p.project_id,
+                p.name,
+                p.budget,
+                (SELECT count(*) FROM task t WHERE t.project_id = p.project_id) AS task_count,
+                (SELECT coalesce(sum(e.amount), 0) FROM expenses e WHERE e.project_id = p.project_id) AS total_expenses
+            FROM project p
+        """)
     return
 
 
@@ -249,6 +261,26 @@ def _(mo):
 @app.cell
 def _(ask):
     ask("SELECT count(*) FROM project WHERE client_name IS NULL")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **7. A View**
+    """)
+    return
+
+
+@app.cell
+def _(ask):
+    ask("SELECT * FROM project_summary ORDER BY total_expenses DESC")
+    return
+
+
+@app.cell
+def _(ask):
+    ask("SELECT count(*) FROM task WHERE project_id = 7")
     return
 
 
