@@ -1,0 +1,58 @@
+import polars as pl
+from pathlib import Path
+
+data = Path("projects/db/data")
+
+people = pl.read_csv(data / "people.csv")
+project = pl.read_csv(data / "project.csv")
+task = pl.read_csv(data / "task.csv")
+expenses = pl.read_csv(data / "expenses.csv")
+assignment = pl.read_csv(data / "assignment.csv")
+
+errors = []
+
+founders = people.filter(pl.col("manager_id").is_null())
+if founders.height != 2:
+    errors.append(f"expected 2 founders, found {founders.height}")
+
+manager_ids = set(people["manager_id"].drop_nulls().to_list())
+person_ids = set(people["person_id"].to_list())
+if not manager_ids.issubset(person_ids):
+    errors.append("some manager_id does not point at a real person")
+
+if (project["budget"] <= 0).any():
+    errors.append("project.budget has non-positive values")
+if not set(project["status"].unique().to_list()) <= {"planned", "active", "paused", "done"}:
+    errors.append(f"project.status has bad values: {set(project['status'].unique().to_list())}")
+
+if (expenses["amount"] <= 0).any():
+    errors.append("expenses.amount has non-positive values")
+found_cat = set(expenses["category"].unique().to_list())
+if not found_cat <= {"GPU cloud", "data labeling", "software", "travel"}:
+    errors.append(f"expenses.category casing/value mismatch: {found_cat}")
+
+bad_hours = assignment.filter((pl.col("hours_per_week") < 1) | (pl.col("hours_per_week") > 40))
+if bad_hours.height > 0:
+    errors.append(f"{bad_hours.height} assignment rows outside 1-40 hours")
+
+bad_dates = task.filter(
+    pl.col("date_completed").is_not_null() & (pl.col("date_completed") < pl.col("date_created"))
+)
+if bad_dates.height > 0:
+    errors.append(f"{bad_dates.height} tasks completed before they were created")
+
+# confirm ONLY tasks 1 and 2 break the "assignee works on the project" rule
+assigned = task.filter(pl.col("assigned_person_id").is_not_null())
+bad_assignment_tasks = []
+for row in assigned.iter_rows(named=True):
+    on_project = assignment.filter(
+        (pl.col("person_id") == row["assigned_person_id"]) & (pl.col("project_id") == row["project_id"])
+    ).height > 0
+    if not on_project:
+        bad_assignment_tasks.append(row["task_id"])
+if set(bad_assignment_tasks) != {1, 2}:
+    errors.append(f"tasks breaking the project-assignment rule: {bad_assignment_tasks} (expected exactly [1, 2])")
+
+print("ISSUES FOUND:" if errors else "All checks passed.")
+for e in errors:
+    print(" -", e)
