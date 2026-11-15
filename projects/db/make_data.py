@@ -260,6 +260,13 @@ broken_task_ids = []  # the two tasks we deliberately break
 # for the on-purpose unassigned task, so they are easy to find later.
 unassigned_task_id = 3
 
+def random_weekday_biased_date(start, end, weekend_prob=0.1):
+    while True:
+        d = random_date(start, end)
+        if d.weekday() < 5 or random.random() < weekend_prob:
+            return d
+
+
 for task_id in range(1, NUM_TASKS + 1):
     project_id = random.choice(all_project_ids)
     team = project_team[project_id]
@@ -291,7 +298,7 @@ for task_id in range(1, NUM_TASKS + 1):
         assigned_person_id = ""
         earliest = project_start_date[project_id]
 
-    date_created = random_date(earliest, AS_OF)
+    date_created = random_weekday_biased_date(earliest, AS_OF)
     due_date = date_created + timedelta(days=random.randint(3, 45))
 
     # About 60% of tasks are already completed.

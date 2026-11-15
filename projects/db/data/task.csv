@@ -2,260 +2,260 @@ task_id,project_id,description,date_created,assigned_person_id,due_date,date_com
 1,2,Set up GPU cluster,2026-11-11,11,2026-12-23,
 2,14,Write unit tests,2026-10-29,15,2026-11-12,
 3,3,Run evaluation suite,2026-07-29,,2026-08-27,
-4,12,Clean up raw dataset,2026-09-19,5,2026-10-02,
-5,7,Tune model hyperparameters,2026-08-22,9,2026-09-08,2026-09-20
-6,5,Build dashboard,2026-10-21,2,2026-10-25,
-7,6,Build dashboard,2026-01-16,14,2026-02-05,2026-02-17
-8,11,Draft client proposal,2026-02-07,5,2026-02-17,
+4,12,Run evaluation suite,2026-11-13,5,2026-11-22,2026-11-13
+5,8,Document API,2026-06-12,7,2026-07-14,2026-08-03
+6,14,Run evaluation suite,2026-05-17,2,2026-06-01,2026-06-03
+7,2,Run evaluation suite,2026-11-09,1,2026-12-23,2026-11-14
+8,9,Draft client proposal,2026-07-30,6,2026-08-09,
 9,3,Tune model hyperparameters,2026-09-24,24,2026-09-29,2026-10-07
-10,12,Clean up raw dataset,2026-10-10,9,2026-11-20,
-11,7,Write unit tests,2026-08-20,15,2026-08-25,
-12,9,Tune model hyperparameters,2026-09-16,24,2026-10-12,2026-10-28
-13,10,Build dashboard,2026-10-16,22,2026-11-07,2026-11-06
-14,6,Deploy model to production,2026-05-12,7,2026-06-19,2026-06-07
-15,7,Run evaluation suite,2026-10-05,15,2026-11-13,2026-11-09
-16,1,Label training data,2026-11-01,4,2026-11-17,2026-11-10
-17,11,Prepare status report,2026-09-19,5,2026-10-20,2026-10-02
-18,8,Deploy model to production,2026-09-05,23,2026-10-20,2026-11-09
-19,11,Set up GPU cluster,2026-03-12,5,2026-03-30,
-20,13,Label training data,2026-07-28,16,2026-08-01,2026-08-12
-21,14,Label training data,2026-09-16,18,2026-10-15,
+10,12,Set up GPU cluster,2026-10-20,9,2026-10-30,2026-11-07
+11,5,Deploy model to production,2026-11-03,2,2026-11-06,2026-11-11
+12,12,Deploy model to production,2026-11-09,4,2026-11-24,2026-11-09
+13,6,Meet with client,2026-05-21,4,2026-07-05,
+14,5,Meet with client,2026-10-26,3,2026-12-10,2026-11-07
+15,5,Build dashboard,2026-10-15,3,2026-10-30,2026-11-14
+16,11,Run evaluation suite,2026-09-17,9,2026-10-26,2026-10-22
+17,1,Fix data pipeline bug,2026-11-10,4,2026-12-21,
+18,8,Meet with client,2026-06-19,2,2026-07-24,2026-08-08
+19,3,Document API,2026-07-30,8,2026-08-07,
+20,4,Set up GPU cluster,2026-08-26,21,2026-09-10,2026-08-28
+21,8,Label training data,2026-04-08,6,2026-05-10,2026-05-18
 22,4,Meet with client,2026-09-30,12,2026-10-28,2026-11-10
 23,1,Fix data pipeline bug,2026-11-05,3,2026-11-22,2026-11-13
 24,1,Deploy model to production,2026-10-30,21,2026-11-09,2026-11-13
 25,9,Fix data pipeline bug,2026-11-06,24,2026-11-29,
 26,10,Meet with client,2026-11-05,11,2026-12-13,2026-11-07
 27,14,Run evaluation suite,2026-09-15,19,2026-10-04,
-28,11,Draft client proposal,2026-10-17,5,2026-11-20,
-29,8,Prepare status report,2026-08-06,16,2026-08-24,2026-08-26
-30,2,Meet with client,2026-11-02,15,2026-11-19,2026-11-04
-31,4,Build dashboard,2026-09-10,13,2026-10-09,2026-10-09
-32,1,Label training data,2026-11-05,2,2026-12-02,
-33,12,Draft client proposal,2026-10-28,5,2026-11-24,2026-11-08
-34,13,Prepare status report,2026-10-06,2,2026-11-12,
-35,13,Fix data pipeline bug,2026-08-16,3,2026-09-19,2026-09-12
-36,1,Build dashboard,2026-11-02,5,2026-12-17,
-37,12,Prepare status report,2026-10-14,5,2026-10-25,
-38,1,Clean up raw dataset,2026-11-10,5,2026-12-19,
-39,11,Build dashboard,2026-04-03,12,2026-05-05,2026-04-19
-40,6,Draft client proposal,2026-09-18,16,2026-10-11,2026-10-12
-41,13,Prepare status report,2026-08-24,2,2026-09-01,2026-09-16
-42,1,Document API,2026-10-30,4,2026-12-13,2026-10-31
-43,1,Set up GPU cluster,2026-10-29,2,2026-11-02,
-44,3,Fix data pipeline bug,2026-04-08,3,2026-05-17,
-45,12,Meet with client,2026-10-02,9,2026-10-15,
-46,12,Draft client proposal,2026-09-05,5,2026-09-27,2026-09-06
-47,10,Run evaluation suite,2026-11-03,23,2026-11-18,2026-11-14
-48,11,Label training data,2026-05-09,9,2026-05-31,
-49,13,Tune model hyperparameters,2026-07-12,17,2026-08-06,2026-08-23
-50,2,Run evaluation suite,2026-11-08,17,2026-11-11,
-51,8,Run evaluation suite,2026-09-12,16,2026-10-08,
-52,8,Deploy model to production,2026-09-03,23,2026-10-03,2026-10-06
-53,5,Draft client proposal,2026-11-10,3,2026-12-13,2026-11-14
-54,6,Set up GPU cluster,2026-06-16,16,2026-07-06,
-55,13,Tune model hyperparameters,2026-11-13,2,2026-12-25,
-56,1,Document API,2026-11-02,5,2026-11-16,2026-11-07
-57,5,Draft client proposal,2026-10-24,11,2026-12-04,
-58,9,Fix data pipeline bug,2026-10-01,17,2026-10-16,2026-10-27
-59,9,Fix data pipeline bug,2026-10-20,25,2026-12-03,
-60,13,Draft client proposal,2026-07-25,17,2026-08-15,2026-08-09
-61,11,Meet with client,2026-09-23,5,2026-10-31,2026-10-20
-62,9,Set up GPU cluster,2026-09-10,6,2026-10-12,2026-09-26
-63,2,Document API,2026-11-04,25,2026-11-27,2026-11-12
-64,12,Draft client proposal,2026-09-09,5,2026-09-25,
-65,12,Run evaluation suite,2026-10-22,4,2026-12-02,2026-10-25
-66,4,Meet with client,2026-08-27,21,2026-09-22,2026-08-27
-67,9,Prepare status report,2026-09-25,25,2026-09-30,
-68,5,Fix data pipeline bug,2026-10-15,3,2026-11-27,
-69,2,Review pull request,2026-11-07,6,2026-12-10,2026-11-12
-70,1,Build dashboard,2026-11-07,4,2026-11-17,
-71,8,Review pull request,2026-10-19,16,2026-12-01,
-72,3,Clean up raw dataset,2026-09-29,24,2026-10-07,
-73,9,Set up GPU cluster,2026-10-12,2,2026-11-22,
-74,13,Draft client proposal,2026-09-26,3,2026-10-27,
-75,14,Label training data,2026-08-09,19,2026-09-17,
-76,12,Review pull request,2026-09-11,5,2026-10-24,2026-09-21
-77,4,Fix data pipeline bug,2026-11-08,22,2026-11-15,2026-11-11
-78,12,Meet with client,2026-10-15,4,2026-11-05,2026-10-24
-79,5,Draft client proposal,2026-11-05,3,2026-11-12,
-80,13,Deploy model to production,2026-08-10,3,2026-09-09,2026-08-24
-81,3,Draft client proposal,2026-06-28,19,2026-07-05,2026-07-23
-82,10,Meet with client,2026-10-27,11,2026-11-27,2026-11-05
-83,7,Label training data,2026-08-30,8,2026-10-06,2026-09-04
-84,1,Set up GPU cluster,2026-11-02,5,2026-12-13,2026-11-03
-85,11,Review pull request,2026-09-08,17,2026-10-17,2026-10-26
-86,8,Deploy model to production,2026-10-14,6,2026-11-03,2026-11-10
-87,14,Tune model hyperparameters,2026-06-15,19,2026-07-18,2026-07-06
-88,11,Draft client proposal,2026-08-12,17,2026-09-05,2026-09-12
-89,11,Draft client proposal,2026-11-01,12,2026-11-06,2026-11-06
-90,6,Write unit tests,2026-07-06,8,2026-08-10,
-91,11,Label training data,2026-08-23,12,2026-08-29,2026-09-03
-92,13,Review pull request,2026-10-12,2,2026-10-18,2026-10-29
-93,5,Meet with client,2026-11-07,11,2026-11-17,2026-11-10
-94,3,Set up GPU cluster,2026-10-11,19,2026-10-14,2026-10-13
-95,14,Review pull request,2026-09-17,18,2026-09-27,
-96,8,Build dashboard,2026-09-21,23,2026-10-26,
-97,14,Build dashboard,2026-09-20,19,2026-10-08,2026-09-29
-98,4,Draft client proposal,2026-09-22,15,2026-10-03,
-99,13,Draft client proposal,2026-09-16,2,2026-10-21,2026-09-16
-100,12,Fix data pipeline bug,2026-10-30,9,2026-12-09,
-101,14,Prepare status report,2026-09-08,2,2026-10-15,2026-09-29
-102,13,Run evaluation suite,2026-09-25,3,2026-10-27,
-103,4,Write unit tests,2026-11-11,22,2026-12-08,2026-11-14
-104,6,Fix data pipeline bug,2026-10-29,21,2026-11-25,2026-11-02
-105,1,Run evaluation suite,2026-11-08,2,2026-12-18,2026-11-08
-106,14,Write unit tests,2026-06-17,19,2026-07-23,
-107,12,Clean up raw dataset,2026-10-07,5,2026-11-20,
-108,8,Deploy model to production,2026-08-22,13,2026-10-03,
-109,2,Document API,2026-11-10,1,2026-12-03,
-110,8,Deploy model to production,2026-03-20,6,2026-05-01,2026-04-29
-111,5,Document API,2026-10-12,2,2026-11-11,
-112,11,Write unit tests,2026-10-23,17,2026-11-05,
-113,1,Review pull request,2026-10-24,4,2026-11-14,2026-11-06
-114,4,Review pull request,2026-09-09,15,2026-10-18,
-115,3,Label training data,2026-03-21,2,2026-05-02,
-116,11,Deploy model to production,2026-08-18,9,2026-09-27,2026-09-16
-117,5,Draft client proposal,2026-10-23,11,2026-12-07,2026-11-06
-118,11,Label training data,2026-05-01,9,2026-06-01,
-119,5,Set up GPU cluster,2026-11-03,3,2026-11-22,2026-11-07
-120,7,Label training data,2026-05-21,3,2026-06-08,2026-06-12
-121,5,Deploy model to production,2026-10-25,3,2026-10-29,
-122,7,Document API,2026-04-26,8,2026-06-04,
-123,12,Draft client proposal,2026-11-01,5,2026-12-05,
-124,13,Label training data,2026-09-19,16,2026-10-06,
-125,5,Deploy model to production,2026-10-15,3,2026-11-27,2026-11-04
-126,1,Clean up raw dataset,2026-11-06,4,2026-11-11,2026-11-08
-127,5,Prepare status report,2026-11-02,11,2026-11-16,2026-11-14
-128,6,Draft client proposal,2026-08-25,4,2026-09-14,
-129,14,Fix data pipeline bug,2026-08-06,19,2026-08-30,
-130,2,Document API,2026-11-05,15,2026-12-03,
-131,9,Clean up raw dataset,2026-08-07,6,2026-09-04,2026-09-10
-132,8,Tune model hyperparameters,2026-07-14,13,2026-08-23,2026-08-23
-133,2,Tune model hyperparameters,2026-11-05,25,2026-12-08,2026-11-13
-134,10,Meet with client,2026-10-13,7,2026-11-25,
-135,5,Draft client proposal,2026-11-02,3,2026-11-12,2026-11-02
-136,8,Review pull request,2026-06-18,16,2026-07-06,
-137,7,Meet with client,2026-07-27,3,2026-09-10,
-138,9,Deploy model to production,2026-10-10,2,2026-10-22,
-139,2,Set up GPU cluster,2026-11-11,9,2026-12-01,2026-11-13
-140,8,Tune model hyperparameters,2026-06-30,2,2026-07-26,2026-08-12
-141,9,Clean up raw dataset,2026-09-10,3,2026-09-16,2026-09-16
-142,14,Write unit tests,2026-06-15,19,2026-07-30,2026-06-17
-143,13,Set up GPU cluster,2026-08-22,9,2026-09-02,
-144,2,Tune model hyperparameters,2026-11-04,17,2026-12-14,2026-11-07
-145,13,Review pull request,2026-06-21,16,2026-07-11,
-146,3,Review pull request,2026-09-23,24,2026-10-07,2026-09-24
-147,1,Draft client proposal,2026-10-30,4,2026-12-09,2026-11-04
-148,1,Fix data pipeline bug,2026-11-05,2,2026-12-11,2026-11-06
-149,8,Write unit tests,2026-04-26,13,2026-05-27,2026-06-04
-150,12,Write unit tests,2026-10-21,4,2026-11-12,2026-10-21
-151,8,Fix data pipeline bug,2026-10-06,2,2026-10-15,2026-11-04
-152,2,Draft client proposal,2026-11-08,6,2026-12-19,2026-11-09
-153,10,Fix data pipeline bug,2026-11-13,11,2026-12-06,2026-11-14
-154,9,Clean up raw dataset,2026-10-16,24,2026-10-25,
-155,14,Build dashboard,2026-08-31,2,2026-10-01,
-156,6,Tune model hyperparameters,2026-07-04,7,2026-08-02,
-157,7,Deploy model to production,2026-10-11,8,2026-10-30,2026-10-20
-158,8,Meet with client,2026-06-17,16,2026-06-25,2026-06-20
-159,12,Prepare status report,2026-09-01,9,2026-10-09,2026-10-06
-160,6,Document API,2026-07-31,21,2026-08-29,2026-09-11
-161,7,Label training data,2026-07-06,9,2026-08-16,2026-07-12
-162,9,Tune model hyperparameters,2026-09-09,25,2026-10-24,2026-09-22
-163,14,Run evaluation suite,2026-03-22,12,2026-04-11,2026-04-18
-164,9,Deploy model to production,2026-11-08,24,2026-12-22,2026-11-12
-165,14,Tune model hyperparameters,2026-02-06,12,2026-02-20,2026-02-25
-166,6,Clean up raw dataset,2026-03-14,8,2026-03-26,2026-04-08
-167,3,Fix data pipeline bug,2026-03-27,8,2026-05-02,2026-04-22
-168,6,Document API,2026-08-27,16,2026-09-18,
-169,10,Label training data,2026-10-14,11,2026-10-20,2026-11-07
-170,1,Fix data pipeline bug,2026-10-25,6,2026-11-14,2026-11-07
-171,10,Clean up raw dataset,2026-11-04,23,2026-11-24,2026-11-12
-172,6,Label training data,2026-02-06,7,2026-02-27,
-173,8,Write unit tests,2026-08-06,6,2026-08-11,2026-08-25
-174,1,Document API,2026-11-01,2,2026-11-17,
-175,5,Review pull request,2026-10-27,11,2026-11-06,2026-11-09
-176,3,Deploy model to production,2026-11-08,3,2026-11-25,2026-11-14
-177,13,Write unit tests,2026-07-09,9,2026-08-06,
-178,7,Label training data,2026-08-19,9,2026-08-26,
-179,7,Build dashboard,2026-10-22,3,2026-12-04,2026-10-25
-180,1,Clean up raw dataset,2026-10-28,4,2026-12-09,2026-11-08
-181,7,Clean up raw dataset,2026-06-25,9,2026-07-25,2026-07-28
-182,7,Review pull request,2026-10-31,8,2026-11-24,2026-11-12
-183,2,Tune model hyperparameters,2026-11-01,17,2026-12-07,2026-11-13
-184,6,Set up GPU cluster,2026-08-06,21,2026-08-24,2026-08-22
-185,3,Fix data pipeline bug,2026-09-10,24,2026-10-24,2026-11-12
-186,13,Label training data,2026-10-13,3,2026-11-21,
-187,6,Fix data pipeline bug,2026-09-18,21,2026-09-30,2026-10-18
-188,11,Clean up raw dataset,2026-06-13,5,2026-07-23,2026-07-15
-189,5,Clean up raw dataset,2026-11-04,11,2026-11-09,2026-11-08
-190,11,Document API,2026-11-08,17,2026-12-05,2026-11-12
-191,12,Tune model hyperparameters,2026-10-12,5,2026-11-20,
-192,10,Fix data pipeline bug,2026-11-10,23,2026-11-22,
-193,2,Write unit tests,2026-10-31,1,2026-12-05,
-194,4,Tune model hyperparameters,2026-09-16,12,2026-10-22,2026-09-26
-195,6,Deploy model to production,2026-06-28,14,2026-07-27,
-196,10,Draft client proposal,2026-10-30,9,2026-11-06,2026-11-11
-197,5,Tune model hyperparameters,2026-11-14,3,2026-11-26,2026-11-14
-198,5,Draft client proposal,2026-11-01,3,2026-11-12,2026-11-02
-199,9,Deploy model to production,2026-10-17,2,2026-11-10,
-200,12,Prepare status report,2026-11-11,4,2026-12-17,2026-11-14
-201,6,Tune model hyperparameters,2026-06-15,8,2026-07-07,2026-06-28
-202,13,Review pull request,2026-08-09,2,2026-08-26,
-203,2,Run evaluation suite,2026-11-01,1,2026-12-06,
-204,12,Label training data,2026-08-20,4,2026-10-04,2026-09-05
-205,7,Document API,2026-08-08,15,2026-08-22,
-206,10,Fix data pipeline bug,2026-11-06,7,2026-11-11,2026-11-09
-207,10,Document API,2026-11-06,22,2026-11-23,2026-11-10
-208,13,Label training data,2026-08-09,2,2026-09-04,
-209,8,Review pull request,2026-07-24,2,2026-08-20,2026-08-19
-210,14,Run evaluation suite,2026-04-03,2,2026-04-22,2026-05-03
-211,6,Draft client proposal,2026-02-02,4,2026-03-10,
-212,2,Review pull request,2026-11-06,15,2026-12-07,
-213,14,Tune model hyperparameters,2026-06-15,19,2026-07-02,
-214,1,Build dashboard,2026-10-24,5,2026-11-21,2026-10-31
-215,2,Run evaluation suite,2026-11-05,1,2026-11-09,2026-11-06
-216,12,Run evaluation suite,2026-09-27,4,2026-10-09,2026-10-15
-217,8,Clean up raw dataset,2026-09-01,23,2026-10-04,2026-09-01
-218,1,Build dashboard,2026-10-29,4,2026-11-10,2026-11-14
-219,2,Build dashboard,2026-11-05,1,2026-11-27,2026-11-08
-220,11,Fix data pipeline bug,2026-02-25,12,2026-03-07,
-221,10,Meet with client,2026-10-10,11,2026-11-22,2026-10-25
-222,3,Set up GPU cluster,2026-09-09,19,2026-09-12,
-223,10,Prepare status report,2026-10-20,23,2026-12-04,
-224,6,Prepare status report,2026-09-07,8,2026-10-14,2026-10-09
-225,1,Tune model hyperparameters,2026-11-07,5,2026-11-12,
-226,5,Tune model hyperparameters,2026-10-08,3,2026-11-02,
-227,4,Prepare status report,2026-10-22,13,2026-11-15,2026-11-02
-228,6,Fix data pipeline bug,2026-08-13,21,2026-09-14,
-229,11,Write unit tests,2026-11-06,9,2026-11-17,2026-11-13
-230,5,Tune model hyperparameters,2026-10-09,2,2026-10-24,
-231,5,Document API,2026-11-01,3,2026-12-08,2026-11-01
-232,11,Write unit tests,2026-06-25,9,2026-07-20,
-233,14,Build dashboard,2026-06-11,12,2026-06-21,
-234,7,Fix data pipeline bug,2026-07-31,3,2026-08-24,
-235,12,Meet with client,2026-10-02,9,2026-11-07,2026-10-07
-236,7,Review pull request,2026-08-12,9,2026-09-22,
-237,9,Draft client proposal,2026-09-06,6,2026-09-15,2026-09-27
-238,5,Tune model hyperparameters,2026-11-14,11,2026-12-14,2026-11-14
-239,8,Draft client proposal,2026-08-23,16,2026-10-04,
-240,11,Tune model hyperparameters,2026-07-21,17,2026-09-04,
-241,9,Review pull request,2026-10-21,3,2026-11-03,
-242,14,Tune model hyperparameters,2026-05-31,19,2026-06-11,2026-06-23
-243,7,Tune model hyperparameters,2026-09-25,9,2026-10-07,
-244,6,Build dashboard,2026-01-20,7,2026-02-28,2026-02-12
-245,6,Write unit tests,2026-09-09,21,2026-09-27,
-246,12,Clean up raw dataset,2026-10-18,5,2026-11-23,2026-11-04
-247,5,Draft client proposal,2026-11-04,11,2026-11-20,
-248,12,Fix data pipeline bug,2026-09-10,9,2026-09-20,2026-09-12
-249,3,Meet with client,2026-03-25,3,2026-04-17,
-250,2,Meet with client,2026-11-07,17,2026-11-29,
-251,12,Prepare status report,2026-11-05,4,2026-11-19,
-252,4,Write unit tests,2026-07-17,13,2026-07-28,2026-08-17
-253,6,Review pull request,2026-10-01,4,2026-10-27,2026-11-05
-254,10,Prepare status report,2026-10-13,9,2026-11-04,2026-11-12
-255,7,Deploy model to production,2026-09-18,3,2026-09-25,2026-09-28
-256,2,Deploy model to production,2026-11-12,9,2026-12-18,2026-11-14
-257,10,Write unit tests,2026-10-17,7,2026-11-16,2026-11-13
-258,14,Tune model hyperparameters,2026-09-24,18,2026-10-06,2026-10-04
-259,12,Run evaluation suite,2026-09-29,5,2026-11-04,
-260,2,Draft client proposal,2026-11-04,1,2026-12-17,
+28,11,Set up GPU cluster,2026-05-26,5,2026-06-15,2026-06-13
+29,5,Set up GPU cluster,2026-10-27,11,2026-12-03,2026-10-31
+30,7,Build dashboard,2026-09-10,15,2026-10-09,2026-10-09
+31,1,Label training data,2026-11-05,2,2026-12-02,
+32,12,Draft client proposal,2026-10-28,5,2026-11-24,2026-11-08
+33,13,Prepare status report,2026-10-06,2,2026-11-12,
+34,13,Review pull request,2026-10-02,3,2026-10-15,
+35,10,Review pull request,2026-10-14,11,2026-11-27,2026-11-12
+36,1,Tune model hyperparameters,2026-11-04,4,2026-11-27,2026-11-09
+37,13,Fix data pipeline bug,2026-08-31,2,2026-09-29,2026-09-05
+38,1,Tune model hyperparameters,2026-11-09,6,2026-11-15,
+39,4,Set up GPU cluster,2026-11-09,13,2026-11-14,
+40,4,Deploy model to production,2026-11-02,13,2026-11-14,2026-11-09
+41,2,Document API,2026-11-04,17,2026-12-06,
+42,6,Meet with client,2026-10-27,16,2026-12-07,
+43,2,Build dashboard,2026-10-29,15,2026-11-20,2026-11-10
+44,12,Deploy model to production,2026-08-25,5,2026-10-04,
+45,4,Document API,2026-08-12,13,2026-09-22,
+46,10,Build dashboard,2026-11-01,9,2026-12-15,2026-11-14
+47,14,Deploy model to production,2026-06-19,19,2026-07-19,
+48,14,Deploy model to production,2026-07-01,19,2026-07-31,2026-08-03
+49,5,Draft client proposal,2026-11-10,3,2026-12-13,2026-11-14
+50,6,Set up GPU cluster,2026-06-16,16,2026-07-06,
+51,13,Tune model hyperparameters,2026-11-13,2,2026-12-25,
+52,1,Document API,2026-11-02,5,2026-11-16,2026-11-07
+53,5,Build dashboard,2026-11-09,11,2026-11-24,2026-11-14
+54,8,Fix data pipeline bug,2026-07-03,6,2026-08-05,
+55,8,Draft client proposal,2026-06-17,16,2026-07-08,2026-07-02
+56,11,Meet with client,2026-09-23,5,2026-10-31,2026-10-20
+57,9,Set up GPU cluster,2026-09-10,6,2026-10-12,2026-09-26
+58,2,Document API,2026-11-04,25,2026-11-27,2026-11-12
+59,12,Draft client proposal,2026-09-09,5,2026-09-25,
+60,12,Run evaluation suite,2026-10-22,4,2026-12-02,2026-10-25
+61,4,Meet with client,2026-08-27,21,2026-09-22,2026-08-27
+62,9,Prepare status report,2026-09-25,25,2026-09-30,
+63,5,Fix data pipeline bug,2026-10-15,3,2026-11-27,
+64,2,Draft client proposal,2026-11-12,6,2026-12-06,2026-11-12
+65,14,Deploy model to production,2026-09-02,19,2026-10-06,2026-10-12
+66,1,Clean up raw dataset,2026-10-27,2,2026-12-05,
+67,4,Document API,2026-10-16,13,2026-11-14,
+68,10,Draft client proposal,2026-11-11,7,2026-12-08,2026-11-14
+69,14,Draft client proposal,2026-06-17,19,2026-07-03,
+70,11,Review pull request,2026-08-11,17,2026-08-29,2026-08-15
+71,1,Set up GPU cluster,2026-11-06,5,2026-12-17,2026-11-06
+72,5,Draft client proposal,2026-11-05,3,2026-11-12,
+73,13,Deploy model to production,2026-08-10,3,2026-09-09,2026-08-24
+74,3,Label training data,2026-06-28,19,2026-07-11,
+75,12,Draft client proposal,2026-09-21,4,2026-10-22,2026-11-04
+76,12,Label training data,2026-10-31,9,2026-11-30,
+77,5,Run evaluation suite,2026-10-12,2,2026-10-29,
+78,14,Draft client proposal,2026-09-18,18,2026-10-24,
+79,3,Clean up raw dataset,2026-10-16,24,2026-11-28,
+80,8,Draft client proposal,2026-04-24,13,2026-05-07,2026-05-25
+81,11,Clean up raw dataset,2026-11-01,12,2026-11-09,2026-11-06
+82,13,Prepare status report,2026-10-30,2,2026-11-02,
+83,8,Deploy model to production,2026-09-03,2,2026-10-15,
+84,8,Fix data pipeline bug,2026-07-16,16,2026-08-05,2026-08-03
+85,12,Label training data,2026-08-31,9,2026-09-04,
+86,13,Build dashboard,2026-07-31,16,2026-08-22,2026-09-04
+87,2,Draft client proposal,2026-11-02,15,2026-12-06,
+88,9,Set up GPU cluster,2026-08-27,3,2026-09-28,2026-09-20
+89,10,Draft client proposal,2026-10-26,11,2026-11-24,2026-11-11
+90,14,Label training data,2026-08-25,18,2026-09-16,
+91,11,Tune model hyperparameters,2026-04-10,12,2026-05-11,2026-05-02
+92,9,Run evaluation suite,2026-10-09,24,2026-11-10,
+93,4,Write unit tests,2026-11-11,22,2026-12-08,2026-11-14
+94,6,Fix data pipeline bug,2026-10-29,21,2026-11-25,2026-11-02
+95,1,Fix data pipeline bug,2026-11-02,2,2026-11-11,
+96,2,Build dashboard,2026-11-12,17,2026-11-15,
+97,14,Draft client proposal,2026-03-02,2,2026-04-04,
+98,6,Run evaluation suite,2026-07-03,4,2026-08-16,2026-08-14
+99,11,Set up GPU cluster,2026-09-30,12,2026-11-06,2026-10-04
+100,11,Document API,2026-05-20,5,2026-05-28,2026-05-23
+101,11,Write unit tests,2026-10-23,17,2026-11-05,
+102,1,Build dashboard,2026-11-03,4,2026-12-03,2026-11-11
+103,10,Label training data,2026-10-19,7,2026-11-02,2026-10-31
+104,11,Deploy model to production,2026-08-18,9,2026-09-27,2026-09-16
+105,5,Draft client proposal,2026-10-23,11,2026-12-07,2026-11-06
+106,11,Label training data,2026-05-01,9,2026-06-01,
+107,5,Set up GPU cluster,2026-11-03,3,2026-11-22,2026-11-07
+108,7,Label training data,2026-05-21,3,2026-06-08,2026-06-12
+109,5,Label training data,2026-10-25,3,2026-12-09,2026-10-25
+110,14,Run evaluation suite,2026-11-13,18,2026-12-24,
+111,5,Deploy model to production,2026-10-21,2,2026-12-03,2026-10-29
+112,13,Draft client proposal,2026-07-15,16,2026-08-27,
+113,13,Clean up raw dataset,2026-06-29,2,2026-08-08,2026-07-07
+114,5,Prepare status report,2026-11-02,11,2026-11-16,2026-11-14
+115,6,Draft client proposal,2026-08-25,4,2026-09-14,
+116,14,Fix data pipeline bug,2026-08-06,19,2026-08-30,
+117,2,Document API,2026-11-05,15,2026-12-03,
+118,9,Clean up raw dataset,2026-08-07,6,2026-09-04,2026-09-10
+119,8,Tune model hyperparameters,2026-07-14,13,2026-08-23,2026-08-23
+120,2,Tune model hyperparameters,2026-11-05,25,2026-12-08,2026-11-13
+121,10,Meet with client,2026-10-13,7,2026-11-25,
+122,5,Draft client proposal,2026-11-02,3,2026-11-12,2026-11-02
+123,8,Review pull request,2026-06-18,16,2026-07-06,
+124,7,Meet with client,2026-07-27,3,2026-09-10,
+125,9,Draft client proposal,2026-10-18,2,2026-11-21,
+126,1,Run evaluation suite,2026-11-03,6,2026-11-19,2026-11-06
+127,6,Deploy model to production,2026-06-18,8,2026-07-25,
+128,6,Run evaluation suite,2026-07-03,8,2026-07-23,2026-07-10
+129,14,Write unit tests,2026-06-15,19,2026-07-30,2026-06-17
+130,13,Set up GPU cluster,2026-11-12,9,2026-11-28,2026-11-14
+131,10,Document API,2026-10-23,7,2026-11-16,
+132,10,Prepare status report,2026-10-26,9,2026-11-07,
+133,5,Review pull request,2026-10-14,2,2026-11-28,
+134,1,Draft client proposal,2026-10-30,4,2026-12-09,2026-11-04
+135,1,Fix data pipeline bug,2026-11-05,2,2026-12-11,2026-11-06
+136,8,Run evaluation suite,2026-06-23,13,2026-08-04,2026-08-12
+137,11,Write unit tests,2026-09-15,5,2026-10-29,
+138,8,Fix data pipeline bug,2026-10-06,2,2026-10-15,2026-11-04
+139,2,Build dashboard,2026-11-04,6,2026-12-04,2026-11-07
+140,6,Draft client proposal,2026-01-29,7,2026-02-21,2026-03-12
+141,6,Clean up raw dataset,2026-09-23,16,2026-09-30,2026-09-25
+142,7,Prepare status report,2026-05-27,9,2026-07-04,2026-07-01
+143,6,Document API,2026-07-31,21,2026-08-29,2026-09-11
+144,7,Label training data,2026-07-06,9,2026-08-16,2026-07-12
+145,9,Tune model hyperparameters,2026-09-09,25,2026-10-24,2026-09-22
+146,14,Run evaluation suite,2026-11-12,12,2026-11-29,
+147,9,Draft client proposal,2026-11-01,24,2026-12-16,
+148,1,Label training data,2026-11-03,2,2026-11-06,2026-11-05
+149,11,Fix data pipeline bug,2026-02-08,12,2026-03-16,2026-03-06
+150,6,Document API,2026-08-27,16,2026-09-18,
+151,10,Label training data,2026-10-14,11,2026-10-20,2026-11-07
+152,1,Build dashboard,2026-11-13,6,2026-12-13,2026-11-14
+153,5,Label training data,2026-11-03,2,2026-11-13,2026-11-13
+154,8,Write unit tests,2026-08-06,6,2026-08-11,2026-08-25
+155,1,Write unit tests,2026-10-27,2,2026-11-15,2026-10-30
+156,8,Meet with client,2026-10-09,23,2026-10-23,2026-11-12
+157,4,Clean up raw dataset,2026-09-28,15,2026-11-12,
+158,7,Run evaluation suite,2026-08-13,9,2026-08-17,2026-08-15
+159,6,Write unit tests,2026-11-04,4,2026-12-03,2026-11-10
+160,6,Tune model hyperparameters,2026-10-30,16,2026-12-01,
+161,2,Meet with client,2026-11-10,9,2026-12-16,2026-11-12
+162,6,Prepare status report,2026-08-18,16,2026-08-31,2026-08-25
+163,9,Draft client proposal,2026-11-11,25,2026-11-23,2026-11-12
+164,4,Deploy model to production,2026-09-18,22,2026-11-01,2026-11-06
+165,8,Clean up raw dataset,2026-08-14,2,2026-09-26,2026-10-09
+166,8,Prepare status report,2026-08-04,2,2026-08-24,2026-08-26
+167,2,Run evaluation suite,2026-11-12,1,2026-12-13,2026-11-13
+168,5,Fix data pipeline bug,2026-10-12,2,2026-11-23,2026-11-05
+169,10,Write unit tests,2026-10-29,11,2026-12-09,2026-11-02
+170,8,Write unit tests,2026-08-20,16,2026-08-28,2026-08-25
+171,4,Tune model hyperparameters,2026-09-16,12,2026-10-22,2026-09-26
+172,6,Deploy model to production,2026-06-03,14,2026-07-14,2026-07-13
+173,6,Draft client proposal,2026-05-29,8,2026-06-07,2026-06-10
+174,5,Tune model hyperparameters,2026-10-28,3,2026-11-05,2026-11-01
+175,5,Run evaluation suite,2026-10-12,3,2026-11-03,2026-11-02
+176,3,Prepare status report,2026-09-02,24,2026-10-16,
+177,6,Tune model hyperparameters,2026-06-15,8,2026-07-07,2026-06-28
+178,13,Run evaluation suite,2026-09-04,2,2026-09-13,2026-09-21
+179,12,Label training data,2026-08-20,4,2026-10-04,2026-09-05
+180,7,Review pull request,2026-10-15,15,2026-11-26,
+181,12,Set up GPU cluster,2026-08-21,9,2026-09-19,2026-10-06
+182,8,Document API,2026-07-02,6,2026-07-24,
+183,8,Document API,2026-10-13,7,2026-11-14,
+184,7,Review pull request,2026-06-04,3,2026-06-19,
+185,14,Prepare status report,2026-02-18,12,2026-04-03,2026-04-06
+186,2,Run evaluation suite,2026-11-07,25,2026-11-20,2026-11-09
+187,7,Write unit tests,2026-06-19,9,2026-07-20,
+188,7,Clean up raw dataset,2026-08-03,9,2026-09-07,2026-08-27
+189,6,Run evaluation suite,2026-06-01,16,2026-06-24,
+190,12,Meet with client,2026-09-02,4,2026-09-07,2026-09-17
+191,14,Label training data,2026-04-09,2,2026-05-17,
+192,9,Write unit tests,2026-08-10,2,2026-08-31,2026-08-17
+193,4,Run evaluation suite,2026-11-06,12,2026-12-18,2026-11-07
+194,8,Meet with client,2026-03-10,6,2026-04-22,2026-04-09
+195,3,Set up GPU cluster,2026-09-09,19,2026-09-12,
+196,10,Prepare status report,2026-10-20,23,2026-12-04,
+197,6,Prepare status report,2026-09-07,8,2026-10-14,2026-10-09
+198,1,Draft client proposal,2026-11-07,5,2026-12-04,
+199,12,Deploy model to production,2026-09-30,5,2026-10-07,2026-10-23
+200,11,Run evaluation suite,2026-09-25,17,2026-10-06,2026-10-16
+201,11,Fix data pipeline bug,2026-11-11,9,2026-12-13,
+202,11,Write unit tests,2026-11-06,9,2026-11-17,2026-11-13
+203,5,Tune model hyperparameters,2026-10-09,2,2026-10-24,
+204,5,Draft client proposal,2026-11-10,3,2026-12-13,2026-11-11
+205,6,Build dashboard,2026-11-12,8,2026-12-06,2026-11-13
+206,7,Fix data pipeline bug,2026-07-31,3,2026-08-24,
+207,12,Meet with client,2026-10-02,9,2026-11-07,2026-10-07
+208,7,Review pull request,2026-08-12,9,2026-09-22,
+209,9,Build dashboard,2026-09-04,6,2026-10-05,
+210,3,Label training data,2026-08-07,3,2026-09-07,2026-08-29
+211,7,Build dashboard,2026-05-08,8,2026-05-15,
+212,6,Deploy model to production,2026-03-03,4,2026-03-07,2026-03-22
+213,13,Tune model hyperparameters,2026-06-29,2,2026-07-10,2026-07-22
+214,7,Tune model hyperparameters,2026-09-25,9,2026-10-07,
+215,6,Build dashboard,2026-01-20,7,2026-02-28,2026-02-12
+216,6,Write unit tests,2026-09-09,21,2026-09-27,
+217,12,Meet with client,2026-10-26,5,2026-11-05,2026-11-03
+218,8,Fix data pipeline bug,2026-10-19,7,2026-11-02,
+219,2,Prepare status report,2026-11-03,25,2026-12-16,2026-11-08
+220,4,Write unit tests,2026-07-17,13,2026-07-28,2026-08-17
+221,6,Review pull request,2026-10-01,4,2026-10-27,2026-11-05
+222,10,Prepare status report,2026-10-13,9,2026-11-04,2026-11-12
+223,7,Deploy model to production,2026-09-18,3,2026-09-25,2026-09-28
+224,2,Deploy model to production,2026-11-12,9,2026-12-18,2026-11-14
+225,10,Review pull request,2026-10-12,7,2026-10-22,2026-10-21
+226,3,Draft client proposal,2026-10-02,19,2026-10-23,
+227,4,Deploy model to production,2026-08-26,15,2026-10-07,2026-09-27
+228,3,Meet with client,2026-11-04,24,2026-11-16,2026-11-13
+229,10,Deploy model to production,2026-11-14,22,2026-11-18,2026-11-14
+230,4,Fix data pipeline bug,2026-09-10,15,2026-10-22,
+231,11,Review pull request,2026-08-19,5,2026-09-10,2026-08-22
+232,8,Review pull request,2026-11-04,2,2026-12-06,2026-11-13
+233,6,Clean up raw dataset,2026-07-31,21,2026-08-20,2026-08-09
+234,1,Run evaluation suite,2026-11-04,4,2026-12-16,2026-11-06
+235,6,Fix data pipeline bug,2026-05-21,4,2026-06-05,
+236,9,Build dashboard,2026-09-28,2,2026-10-20,2026-10-03
+237,9,Write unit tests,2026-08-26,2,2026-09-11,2026-08-29
+238,5,Build dashboard,2026-11-06,11,2026-11-27,2026-11-07
+239,3,Write unit tests,2026-08-24,19,2026-09-21,2026-09-18
+240,10,Build dashboard,2026-10-21,11,2026-11-16,2026-10-23
+241,9,Clean up raw dataset,2026-11-09,2,2026-12-21,
+242,3,Write unit tests,2026-05-21,8,2026-07-01,2026-06-22
+243,1,Prepare status report,2026-10-27,3,2026-11-20,
+244,8,Tune model hyperparameters,2026-05-12,7,2026-06-04,
+245,3,Draft client proposal,2026-10-26,3,2026-11-30,2026-11-13
+246,8,Build dashboard,2026-08-27,16,2026-09-20,
+247,10,Deploy model to production,2026-10-12,22,2026-11-21,2026-11-14
+248,12,Set up GPU cluster,2026-11-11,4,2026-11-29,2026-11-11
+249,1,Set up GPU cluster,2026-11-02,5,2026-12-01,2026-11-13
+250,7,Prepare status report,2026-10-29,3,2026-11-04,
+251,4,Fix data pipeline bug,2026-09-18,15,2026-10-24,2026-09-29
+252,9,Draft client proposal,2026-11-02,6,2026-12-16,
+253,10,Set up GPU cluster,2026-10-21,23,2026-11-08,2026-10-30
+254,5,Prepare status report,2026-10-20,11,2026-11-23,2026-10-31
+255,13,Build dashboard,2026-09-02,9,2026-09-12,2026-09-19
+256,7,Clean up raw dataset,2026-07-07,8,2026-07-12,2026-07-29
+257,6,Set up GPU cluster,2026-11-12,7,2026-12-01,
+258,4,Meet with client,2026-10-16,15,2026-11-05,2026-11-04
+259,10,Write unit tests,2026-10-24,7,2026-11-29,2026-10-31
+260,2,Review pull request,2026-11-02,9,2026-11-05,
