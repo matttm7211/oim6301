@@ -1,0 +1,69 @@
+person_id,project_id,role,hours_per_week,date_joined
+3,1,Analyst,39,2026-10-25
+2,1,Analyst,25,2026-11-11
+4,1,Analyst,34,2026-10-31
+5,1,Contributor,1,2026-11-13
+21,1,Project Lead,35,2026-10-31
+6,1,Data Scientist,8,2026-11-01
+6,2,Contributor,7,2026-11-07
+15,2,Contributor,39,2026-11-04
+1,2,Engineer,24,2026-11-03
+9,2,Contributor,34,2026-10-29
+17,2,Contributor,21,2026-11-13
+25,2,Project Lead,8,2026-11-09
+8,3,Analyst,5,2026-11-08
+2,3,Engineer,9,2026-10-10
+19,3,Contributor,11,2026-07-29
+3,3,Contributor,39,2026-09-13
+24,3,Engineer,35,2026-09-16
+13,4,Contributor,29,2026-06-26
+22,4,Engineer,15,2026-09-07
+21,4,Data Scientist,2,2026-08-27
+12,4,Contributor,15,2026-05-28
+15,4,Project Lead,4,2026-08-17
+2,5,Contributor,16,2026-10-24
+11,5,Analyst,14,2026-11-10
+3,5,Engineer,37,2026-11-12
+8,6,Analyst,23,2026-07-16
+16,6,Analyst,30,2026-06-07
+14,6,Project Lead,4,2026-07-06
+7,6,Data Scientist,7,2026-04-18
+4,6,Engineer,13,2026-09-12
+21,6,Analyst,9,2026-10-16
+9,7,Analyst,36,2026-05-19
+15,7,Project Lead,35,2026-11-03
+8,7,Project Lead,6,2026-11-02
+3,7,Engineer,11,2026-08-06
+16,8,Project Lead,25,2026-07-31
+7,8,Analyst,19,2026-10-04
+13,8,Contributor,32,2026-05-20
+2,8,Engineer,19,2026-06-21
+6,8,Project Lead,38,2026-04-02
+23,8,Data Scientist,4,2026-08-21
+17,9,Engineer,5,2026-10-11
+25,9,Project Lead,16,2026-10-11
+6,9,Project Lead,37,2026-08-27
+2,9,Contributor,39,2026-08-01
+24,9,Contributor,6,2026-10-14
+3,9,Contributor,37,2026-10-01
+9,10,Engineer,17,2026-11-03
+7,10,Engineer,20,2026-11-07
+22,10,Data Scientist,5,2026-10-09
+23,10,Analyst,40,2026-11-14
+11,10,Project Lead,5,2026-11-12
+17,11,Project Lead,16,2026-10-04
+9,11,Data Scientist,11,2026-08-03
+5,11,Contributor,20,2026-10-21
+12,11,Project Lead,36,2026-06-26
+5,12,Project Lead,36,2026-09-04
+9,12,Data Scientist,19,2026-11-01
+4,12,Engineer,22,2026-09-11
+17,13,Analyst,18,2026-07-13
+16,13,Project Lead,22,2026-07-24
+9,13,Data Scientist,11,2026-10-12
+2,13,Contributor,28,2026-11-11
+3,13,Project Lead,8,2026-07-10
+18,14,Contributor,10,2026-09-13
+2,14,Engineer,3,2026-06-29
+12,14,Data Scientist,3,2026-07-25
+19,14,Engineer,16,2026-11-09

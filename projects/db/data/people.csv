@@ -1,0 +1,26 @@
+person_id,first_name,last_name,work_email,title,start_date,manager_id
+1,Danielle,Johnson,danielle.johnson@babsonailabs.com,Founder & CEO,2022-06-13,
+2,Joshua,Walker,joshua.walker@babsonailabs.com,Founder & CTO,2022-01-29,
+3,Jill,Rhodes,jill.rhodes@babsonailabs.com,VP of Operations,2024-01-27,1
+4,Patricia,Miller,patricia.miller@babsonailabs.com,VP of Engineering,2023-04-24,1
+5,Robert,Johnson,robert.johnson@babsonailabs.com,VP of Operations,2025-08-02,1
+6,Jeffery,Wagner,jeffery.wagner@babsonailabs.com,VP of Operations,2024-11-23,1
+7,Anthony,Gonzalez,anthony.gonzalez@babsonailabs.com,VP of Engineering,2023-01-20,1
+8,Debra,Gardner,debra.gardner@babsonailabs.com,VP of Engineering,2025-05-12,1
+9,Jeffrey,Lawrence,jeffrey.lawrence@babsonailabs.com,Engineering Manager,2026-04-13,7
+10,Lisa,Smith,lisa.smith@babsonailabs.com,Product Manager,2026-06-13,4
+11,Linda,Wolfe,linda.wolfe@babsonailabs.com,Engineering Manager,2026-03-27,6
+12,Matthew,Moore,matthew.moore@babsonailabs.com,Data Science Manager,2023-03-04,7
+13,Susan,Rogers,susan.rogers@babsonailabs.com,Product Manager,2025-10-05,4
+14,Christopher,Davis,christopher.davis@babsonailabs.com,Data Science Manager,2025-11-19,5
+15,Melanie,Munoz,melanie.munoz@babsonailabs.com,Senior Data Scientist,2026-07-19,10
+16,Lindsay,Blair,lindsay.blair@babsonailabs.com,Business Analyst,2026-05-25,9
+17,Amanda,Dudley,amanda.dudley@babsonailabs.com,Senior Data Scientist,2026-07-02,11
+18,Nicholas,Arnold,nicholas.arnold@babsonailabs.com,Business Analyst,2026-07-20,9
+19,Maria,Montgomery,maria.montgomery@babsonailabs.com,Business Analyst,2026-05-23,9
+20,Michelle,Ray,michelle.ray@babsonailabs.com,Senior Data Scientist,2026-05-08,13
+21,Janet,Williams,janet.williams@babsonailabs.com,Data Engineer,2026-06-30,19
+22,Jeremy,Roberts,jeremy.roberts@babsonailabs.com,Data Engineer,2026-08-30,15
+23,Christopher,Hall,christopher.hall@babsonailabs.com,ML Engineer,2026-08-15,17
+24,Craig,Ramirez,craig.ramirez@babsonailabs.com,Analyst,2026-08-22,15
+25,Cynthia,Diaz,cynthia.diaz@babsonailabs.com,Data Scientist,2026-08-21,18

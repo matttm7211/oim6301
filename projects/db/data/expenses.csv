@@ -1,0 +1,161 @@
+expense_id,project_id,expense_date,amount,category,note
+1,3,2025-12-31,12307.84,software,
+2,11,2026-09-07,11856.58,data labeling,Vendor invoice
+3,3,2026-08-29,16858.47,software,Annual license
+4,1,2026-10-08,956.96,GPU cloud,
+5,5,2026-06-15,15350.83,data labeling,
+6,11,2026-10-01,9985.86,GPU cloud,
+7,5,2026-10-30,9684.75,software,Subscription renewal
+8,5,2025-12-14,1505.81,travel,Client site visit
+9,8,2026-02-26,9710.81,travel,Conference travel
+10,10,2026-04-26,6286.02,data labeling,
+11,6,2026-05-22,2658.78,travel,
+12,9,2026-07-10,6416.36,GPU cloud,Monthly compute bill
+13,5,2026-01-02,4995.98,travel,Client site visit
+14,5,2026-06-16,17290.07,travel,Client site visit
+15,3,2026-04-23,18678.34,software,Annual license
+16,13,2026-08-04,9990.4,data labeling,Batch labeling job
+17,8,2025-12-30,9972.54,software,Subscription renewal
+18,9,2026-03-04,19335.4,travel,
+19,6,2026-07-25,1058.28,GPU cloud,
+20,11,2025-11-18,5750.68,travel,Client site visit
+21,7,2026-05-20,17654.99,data labeling,Batch labeling job
+22,6,2026-09-01,8041.6,GPU cloud,
+23,4,2025-12-21,11086.8,software,Subscription renewal
+24,9,2026-04-06,15299.86,travel,
+25,11,2026-01-02,2616.83,GPU cloud,Training run
+26,6,2026-05-20,11178.75,software,Annual license
+27,4,2025-12-07,10026.55,travel,Client site visit
+28,3,2026-08-06,16089.12,software,Subscription renewal
+29,3,2026-09-23,6592.92,data labeling,Batch labeling job
+30,3,2026-04-16,19812.78,travel,
+31,6,2026-04-16,14189.36,travel,Conference travel
+32,1,2026-01-09,6658.23,software,Subscription renewal
+33,10,2026-11-01,15945.26,software,
+34,1,2026-10-15,5347.33,travel,
+35,10,2026-09-08,14441.93,data labeling,Batch labeling job
+36,3,2026-10-28,2998.13,travel,Client site visit
+37,1,2026-06-27,3856.15,GPU cloud,Training run
+38,7,2026-02-26,8288.55,data labeling,Batch labeling job
+39,9,2025-12-15,17462.71,travel,
+40,3,2026-10-19,11239.69,data labeling,Batch labeling job
+41,9,2026-02-10,6309.36,travel,Conference travel
+42,9,2026-10-26,10948.15,software,
+43,11,2026-02-20,12221.03,software,Annual license
+44,5,2026-04-15,4536.1,software,Subscription renewal
+45,12,2026-07-22,13820.29,data labeling,Batch labeling job
+46,8,2026-04-03,11231.73,software,Subscription renewal
+47,2,2026-06-04,17920.42,travel,Conference travel
+48,13,2026-04-10,5844.53,data labeling,
+49,2,2026-10-15,18483.99,software,Subscription renewal
+50,12,2026-08-16,4319.04,travel,Conference travel
+51,9,2026-09-25,2788.6,software,
+52,10,2026-10-22,4887.04,data labeling,
+53,4,2026-06-13,1097.2,data labeling,Batch labeling job
+54,12,2026-01-23,2055.87,travel,Client site visit
+55,9,2026-07-15,8167.8,data labeling,Batch labeling job
+56,11,2026-04-10,15130.43,data labeling,Batch labeling job
+57,5,2025-12-29,18163.34,GPU cloud,
+58,10,2025-12-03,10726.29,data labeling,Vendor invoice
+59,7,2025-12-02,18681.76,data labeling,Batch labeling job
+60,13,2026-04-11,3766.92,travel,Client site visit
+61,1,2026-01-07,11380.84,software,Subscription renewal
+62,5,2026-08-19,19782.53,travel,
+63,8,2026-07-11,17028.64,data labeling,Batch labeling job
+64,4,2026-07-06,6647.15,GPU cloud,
+65,5,2026-05-05,330.98,data labeling,Batch labeling job
+66,10,2026-10-07,3551.12,data labeling,Batch labeling job
+67,7,2026-10-22,1780.42,software,Annual license
+68,3,2026-03-21,9575.21,data labeling,Vendor invoice
+69,5,2026-03-30,4748.65,travel,Conference travel
+70,5,2026-05-17,5267.99,GPU cloud,
+71,4,2026-07-10,13372.33,GPU cloud,Training run
+72,3,2026-11-09,13737.17,travel,Conference travel
+73,12,2026-04-14,12792.29,GPU cloud,Training run
+74,10,2026-01-21,4421.62,data labeling,Batch labeling job
+75,3,2026-09-20,14967.31,travel,Conference travel
+76,7,2026-10-20,15159.14,travel,Client site visit
+77,13,2026-09-15,13622.82,data labeling,Vendor invoice
+78,9,2026-05-18,10587.05,travel,Client site visit
+79,10,2026-08-21,1282.07,GPU cloud,
+80,4,2026-08-07,3332.52,data labeling,Batch labeling job
+81,2,2026-07-22,14352.51,data labeling,Vendor invoice
+82,9,2026-07-04,16183.41,travel,Client site visit
+83,9,2025-12-13,9163.13,travel,
+84,8,2026-06-04,14479.44,software,Subscription renewal
+85,1,2025-12-07,11587.31,data labeling,Batch labeling job
+86,6,2025-12-14,10846.21,GPU cloud,Monthly compute bill
+87,8,2026-02-14,5777.46,GPU cloud,Monthly compute bill
+88,13,2026-05-28,7520.5,travel,Conference travel
+89,7,2026-10-18,1650.99,travel,
+90,3,2026-08-16,2416.73,software,Subscription renewal
+91,9,2026-03-08,14570.77,data labeling,Vendor invoice
+92,13,2026-07-09,19570.89,GPU cloud,
+93,12,2026-03-11,10662.08,travel,Client site visit
+94,8,2026-02-18,3144.67,software,
+95,13,2026-10-18,692.74,GPU cloud,Training run
+96,10,2025-12-18,4851.29,GPU cloud,Monthly compute bill
+97,10,2026-10-24,8956.5,GPU cloud,
+98,1,2026-06-07,14823.79,data labeling,Batch labeling job
+99,4,2025-12-12,15099.99,data labeling,Vendor invoice
+100,9,2026-09-04,4721.52,software,Subscription renewal
+101,10,2026-01-26,4776.24,software,
+102,9,2026-04-03,8300.53,data labeling,Vendor invoice
+103,9,2026-06-20,12538.56,data labeling,
+104,8,2026-10-09,19447.19,GPU cloud,
+105,7,2026-06-11,13941.35,software,Annual license
+106,5,2026-08-16,3718.39,travel,Conference travel
+107,4,2026-11-11,6049.69,data labeling,Vendor invoice
+108,13,2026-08-28,18299.09,travel,Conference travel
+109,7,2026-03-24,7798.96,data labeling,Vendor invoice
+110,6,2026-05-22,18448.41,GPU cloud,Monthly compute bill
+111,9,2026-05-26,1078.16,data labeling,
+112,10,2026-02-18,17478.73,GPU cloud,
+113,12,2026-05-03,9613.91,data labeling,Batch labeling job
+114,1,2026-01-13,18746.34,data labeling,
+115,13,2026-11-05,18293.1,travel,
+116,12,2026-03-16,7962.81,data labeling,
+117,6,2026-08-14,7644.2,software,
+118,6,2026-08-03,5268.15,software,Subscription renewal
+119,8,2026-07-12,16066.19,GPU cloud,Training run
+120,4,2025-12-07,6292.79,software,
+121,4,2026-08-24,373.59,data labeling,
+122,10,2026-02-22,5939.09,travel,Conference travel
+123,4,2026-03-19,11417.3,travel,Conference travel
+124,9,2026-07-22,5183.67,software,
+125,11,2026-05-13,9243.54,travel,Client site visit
+126,3,2026-08-18,3721.75,travel,
+127,1,2025-12-22,16789.42,GPU cloud,
+128,1,2026-10-02,8277.22,GPU cloud,Monthly compute bill
+129,2,2026-07-30,232.37,data labeling,Batch labeling job
+130,6,2026-10-21,12375.81,GPU cloud,
+131,8,2026-08-13,363.85,travel,
+132,7,2026-04-03,383.69,GPU cloud,
+133,5,2026-11-06,10069.21,GPU cloud,
+134,7,2026-01-02,2184.98,data labeling,
+135,3,2026-08-10,3879.04,data labeling,Batch labeling job
+136,6,2025-12-24,15908.98,software,Subscription renewal
+137,7,2026-11-05,11321.79,travel,Client site visit
+138,5,2026-10-12,13092.03,GPU cloud,Monthly compute bill
+139,2,2026-08-23,7616.32,travel,Conference travel
+140,1,2025-12-26,14071.76,GPU cloud,Training run
+141,7,2026-01-01,11338.84,software,
+142,1,2026-11-03,4267.77,data labeling,
+143,8,2025-12-22,978.91,software,
+144,5,2026-04-24,3628.12,GPU cloud,Monthly compute bill
+145,4,2026-11-13,15057.48,data labeling,Batch labeling job
+146,2,2026-03-17,3290.88,software,
+147,7,2026-01-24,7707.73,software,
+148,12,2026-05-10,10040.82,GPU cloud,Monthly compute bill
+149,2,2025-12-22,4681.27,travel,Conference travel
+150,10,2026-04-30,19379.96,travel,Client site visit
+151,11,2026-07-02,15681.79,software,Subscription renewal
+152,4,2026-05-25,11083.1,software,Subscription renewal
+153,3,2026-09-26,1759.6,travel,Conference travel
+154,13,2025-12-26,14276.52,data labeling,Batch labeling job
+155,3,2026-10-04,14247.96,travel,Client site visit
+156,12,2026-01-07,6367.73,travel,Client site visit
+157,1,2026-04-01,8922.48,software,Annual license
+158,3,2026-07-01,3788.47,GPU cloud,
+159,9,2025-12-29,2110.69,travel,Conference travel
+160,9,2026-04-29,11958.64,GPU cloud,Training run

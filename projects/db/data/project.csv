@@ -1,0 +1,15 @@
+project_id,name,client_name,category,budget,start_date,status
+1,Atlas 1,Kelly-Santiago,LLM app,187306.29,2026-10-23,paused
+2,Beacon 1,"Zuniga, Wong and Lynch",data pipeline,355382.85,2026-10-29,paused
+3,Nimbus 1,,internal tool,310428.54,2026-02-09,planned
+4,Forge 1,Ferguson and Sons,LLM app,94250.21,2026-05-27,active
+5,Pulse 1,Ford LLC,data pipeline,494918.83,2026-10-07,paused
+6,Vertex 1,,internal tool,347037.91,2025-12-12,active
+7,Orbit 1,"Watts, Robinson and Nguyen",LLM app,413574.26,2026-04-24,active
+8,Lattice 1,Perez Inc,data pipeline,144854.32,2026-03-02,done
+9,Harbor 1,,internal tool,118123.87,2026-07-27,paused
+10,Summit 1,Morales-Jones,LLM app,444071.33,2026-10-09,done
+11,Cascade 1,"Walter, Edwards and Rios",data pipeline,84292.72,2026-01-24,done
+12,Horizon 1,,internal tool,376319.66,2026-08-16,active
+13,Anchor 1,Wilkerson-Day,LLM app,377301.7,2026-06-21,paused
+14,Prism 1,Baker and Sons,data pipeline,190568.28,2026-01-23,done
