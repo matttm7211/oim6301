@@ -202,5 +202,55 @@ def _(database, duckdb):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **6. Answered I already knew**
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **Expected 25**
+    """)
+    return
+
+
+@app.cell
+def _(ask):
+    ask("SELECT count(*) FROM people")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **Expected 2 (the 2 founders)**
+    """)
+    return
+
+
+@app.cell
+def _(ask):
+    ask("SELECT count(*) FROM people WHERE manager_id IS NULL")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **Expected at least 1 project where the project is internal**
+    """)
+    return
+
+
+@app.cell
+def _(ask):
+    ask("SELECT count(*) FROM project WHERE client_name IS NULL")
+    return
+
+
 if __name__ == "__main__":
     app.run()
