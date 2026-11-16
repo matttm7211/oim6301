@@ -371,5 +371,115 @@ def _(mo):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **How I Know These Numbers Are Right**
+    """)
+    return
+
+
+@app.cell
+def _(AS_OF, ask):
+    ## CHECK #1
+
+    qestion9_check = ask(f"""
+        SELECT date_trunc('month', expense_date) AS month, sum(amount) AS total
+        FROM expenses
+        WHERE expense_date > DATE '{AS_OF}' - INTERVAL 12 MONTH
+          AND expense_date <= DATE '{AS_OF}'
+        GROUP BY month
+    """)
+    sum_of_months = qestion9_check["total"].sum()
+
+    direct_total = ask(f"""
+        SELECT sum(amount) AS total
+        FROM expenses
+        WHERE expense_date > DATE '{AS_OF}' - INTERVAL 12 MONTH
+          AND expense_date <= DATE '{AS_OF}'
+    """)["total"][0]
+
+    print(f"Sum of the 13 monthly totals: {sum_of_months:.2f}")
+    print(f"Direct total over the same window: {direct_total:.2f}")
+    assert abs(sum_of_months - direct_total) < 0.01, "Mismatch — the monthly breakdown doesn't add up to the whole"
+    print("They match.")
+    return
+
+
+@app.cell
+def _(ask):
+    ## CHECK #2
+
+    alt_count = ask("""
+        SELECT count(*) AS n
+        FROM task t
+        WHERE t.assigned_person_id IS NOT NULL
+          AND NOT EXISTS (
+              SELECT 1 FROM assignment a
+              WHERE a.person_id = t.assigned_person_id
+                AND a.project_id = t.project_id
+          )
+    """)["n"][0]
+
+    print(f"NOT EXISTS version found: {alt_count} broken tasks")
+    assert alt_count == 2, f"Expected 2 (matching question 7's answer), got {alt_count}"
+    print("Matches question 7's answer of 2.")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **Working with the Agent**
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    When I first generated my data, **make_data.py** produced **date_created** for every task as a uniformly random date across the full 12-month range, with no regard for weekday versus weekend. I only caught this in Part A, section 3, when I charted tasks created by day of week and saw Saturday and Sunday with roughly the same number of tasks as an average weekday, which is unrealistic for a company doing project work, since new tasks should mostly get created during business days. I fixed it by adding a **random_weekday_biased_date()** function to **make_data.py** that re-rolls a date until it lands on a weekday (allowing weekends only 10% of the time), and used it for **date_created** specifically. After regenerating the CSVs and rebuilding the database, the same chart showed the expected weekday-heavy, weekend-light pattern. See commit **1c29cbe - fixing task generation**.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **Reading it back**
+    """)
+    return
+
+
+@app.cell
+def _(ask):
+    joined = ask("""
+        SELECT p.project_id, t.task_id, e.expense_id
+        FROM project p
+        JOIN task t ON t.project_id = p.project_id
+        JOIN expenses e ON e.project_id = p.project_id
+    """)
+    actual_rows = joined.height
+    print(f"Predicted: 2946")
+    print(f"Actual: {actual_rows}")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    My prediction of 2,946 rows matched exactly. This confirms that joining **project** to both **task** and **expenses** on **project_id**, without any **GROUP BY**, really does produce one row per (task, expense) pair within each project. The total is the sum, across all 14 projects, of that project's task count times its expense count. Project 14 (Prism 1), which has 16 tasks but zero expenses, correctly contributed 0 rows to this total rather than 16.
+
+    One row of the final, grouped question 6 result means, for example, that project Atlas 1 currently has 21 tasks recorded against it, and that, summed across all of its expense records, $155,866.42 has been spent on it so far. It does not mean there were 21 expense rows, or that each task cost that amount, but rather those two numbers are two separate totals for the same project.
+    """)
+    return
+
+
+@app.cell
+def _(ask):
+    ask("SELECT task_count, total_expenses FROM project_summary WHERE project_id = 14")
+    return
+
+
 if __name__ == "__main__":
     app.run()
