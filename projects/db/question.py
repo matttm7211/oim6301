@@ -481,5 +481,52 @@ def _(ask):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **Going Further**
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    For going further, I added a dropdown control **(mo.ui.dropdown)** letting anyone pick a project by name, with a cell below it that reactively shows that project’s tasks, due dates, and completion status. Picking a different project in the dropdown automatically reruns the query and updates the table with no code changes needed
+    """)
+    return
+
+
+@app.cell
+def _(ask, mo):
+    project_options = ask("SELECT project_id, name FROM project ORDER BY name")
+    project_picker = mo.ui.dropdown(
+        options={row["name"]: row["project_id"] for row in project_options.iter_rows(named=True)},
+        label="Pick a project",
+    )
+    project_picker
+    return (project_picker,)
+
+
+@app.cell
+def _(ask, project_picker):
+    selected_id = project_picker.value
+    ask(f"""
+        SELECT task_id, description, due_date, date_completed
+        FROM task
+        WHERE project_id = {selected_id}
+        ORDER BY due_date
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **time spent =** ~6-7 hours
+    """)
+    return
+
+
 if __name__ == "__main__":
     app.run()
