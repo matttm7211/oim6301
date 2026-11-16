@@ -311,5 +311,65 @@ def _(mo):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **Question 9: How has total expense spending trended month by month over the last 12 months?**
+    """)
+    return
+
+
+@app.cell
+def _(AS_OF, ask):
+    ask(f"""
+        SELECT
+            date_trunc('month', expense_date) AS month,
+            sum(amount) AS total
+        FROM expenses
+            WHERE expense_date > DATE '{AS_OF}' - INTERVAL 12 MONTH
+          AND expense_date <= DATE '{AS_OF}'
+        GROUP BY month
+        ORDER BY month
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    Monthly expense spending was fairly steady most of the year, generally between $75,000 and $136,000, except for two notably higher months, December 2025 (\$210,426) and July 2026 (\$252,241), both roughly double a typical month. November 2025's low figure (\$6,932) is just a partial month at the start of the 12-month window, not a real dip in spending
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    **Question 10: What share of completed tasks were finished after their original due date?**
+    """)
+    return
+
+
+@app.cell
+def _(ask):
+    ask("""
+        SELECT
+            count(*) AS completed_tasks,
+            sum(CASE WHEN date_completed > due_date THEN 1 ELSE 0 END) AS late_completions,
+            round(100.0 * sum(CASE WHEN date_completed > due_date THEN 1 ELSE 0 END) / count(*), 1) AS pct_late
+        FROM task
+        WHERE date_completed IS NOT NULL
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    Of the 165 tasks that have been completed, 42 (25.5%) were finished after their original due date, meaning roughly one in four completed tasks runs late.
+    """)
+    return
+
+
 if __name__ == "__main__":
     app.run()
